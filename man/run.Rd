@@ -2,13 +2,15 @@
 % Please edit documentation in R/bmi-server.R
 \name{run}
 \alias{run}
-\title{Command line interface of grpc4 bmi server
-Use following environment variables for configuration:}
+\title{Start a gRPC server wrapping a bmi model
+'}
 \usage{
 run()
 }
+\value{
+none
+}
 \description{
-* BMI_MODULE, file which contains bmi class
-* BMI_CLASS, class name which subclasses AbstractBmi
-* BMI_PORT, a tcp port number to run the server on
+Start a gRPC server wrapping a bmi model
+'
 }

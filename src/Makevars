@@ -1,0 +1,3 @@
+CXX_STD=CXX11
+PKG_LIBS=-L/usr/local/lib -lprotobuf -pthread -lpthread -lgrpc++ -Wl,--no-as-needed -lgrpc++_reflection
+PKG_CXXFLAGS=-pthread -I/usr/local/include

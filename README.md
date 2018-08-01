@@ -22,7 +22,7 @@ Then the server can be started with:
 ```
 export BMI_MODULE=<path to r script with bmi class>
 export BMI_CLASS=<bmi class name>
-export BMI_PORT=<port on which to run grpc server, default is 55555> 
+export BMI_PORT=<port on which to run grpc server, default is 55555>
 Rscript -e 'grpc4bmi::run()'
 ```
 
@@ -32,4 +32,15 @@ Rscript -e 'grpc4bmi::run()'
 
 ```
 Rscript -e "devtools::document(roclets=c('rd', 'collate', 'namespace'))"
+```
+
+
+```
+cd src
+protoc -I ../inst/proto --grpc_out=. --plugin=protoc-gen-grpc=`which grpc_cpp_plugin` .../inst/proto/bmi.proto
+protoc -I ../inst/proto --cpp_out=. .../inst/proto/bmi.proto
+cd -
+Rscript -e 'Rcpp::compileAttributes();devtools::document()'
+R CMD INSTALL .
+Rscript -e 'grpc4bmi::run()'
 ```

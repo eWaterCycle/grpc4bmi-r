@@ -7,8 +7,9 @@ Author: S. Verhoeven
 Maintainer: S. Verhoeven <s.verhoeven@esciencecenter.nl>
 Description: Model as a service. Used in eWatercycle project to run hydrology models.
 License: file LICENSE
-Depends: R (>= 3.4.0), configr, R6, RProtoBuf
-Imports: grpc
+Depends: R (>= 3.4.0), configr, R6
+Imports: Rcpp (>= 0.12.18)
+LinkingTo: Rcpp
 Remotes: eWaterCycle/grpc-r@index-out-of-bounds
 RoxygenNote: 6.1.0
 Suggests: 
