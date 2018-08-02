@@ -2,8 +2,7 @@
 % Please edit documentation in R/bmi-server.R
 \name{run}
 \alias{run}
-\title{Start a gRPC server wrapping a bmi model
-'}
+\title{Start a gRPC server wrapping a bmi model}
 \usage{
 run()
 }
@@ -12,5 +11,4 @@ none
 }
 \description{
 Start a gRPC server wrapping a bmi model
-'
 }

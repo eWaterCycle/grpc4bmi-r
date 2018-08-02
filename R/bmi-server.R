@@ -11,12 +11,15 @@ MockedBmi <- R6Class(
     bmi_initialize = function(config_file) {
       print(config_file)
     },
-    getComponentName = function() return('mock')
+    getComponentName = function() return('mock'),
+    foobar = function() {
+      print('Been here')
+    }
   )
 )
 
 #' Start a gRPC server wrapping a bmi model
-#''
+#'
 #' @return none
 #' @export
 run <- function() {
@@ -24,4 +27,13 @@ run <- function() {
 
   runServer(model, port="55555")
   invisible(NULL)
+}
+
+#' Call R func via cpp
+#'
+#' @export
+bla <- function() {
+  model = MockedBmi$new()
+
+  callmyR(model)
 }

@@ -17,9 +17,20 @@ BEGIN_RCPP
     return R_NilValue;
 END_RCPP
 }
+// callmyR
+void callmyR(Environment f);
+RcppExport SEXP _grpc4bmi_callmyR(SEXP fSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Environment >::type f(fSEXP);
+    callmyR(f);
+    return R_NilValue;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_grpc4bmi_runServer", (DL_FUNC) &_grpc4bmi_runServer, 3},
+    {"_grpc4bmi_callmyR", (DL_FUNC) &_grpc4bmi_callmyR, 1},
     {NULL, NULL, 0}
 };
 

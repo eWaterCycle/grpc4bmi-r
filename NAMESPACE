@@ -2,6 +2,8 @@
 
 export(AbstractBmi)
 export(MockedBmi)
+export(bla)
+export(callmyR)
 export(run)
 importFrom(Rcpp,evalCpp)
 useDynLib(grpc4bmi)

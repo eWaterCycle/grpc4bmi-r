@@ -10,6 +10,7 @@ using grpc::Server;
 using grpc::ServerBuilder;
 using grpc::ServerContext;
 using grpc::Status;
+using grpc::StatusCode;
 using bmi::Empty;
 using bmi::InitializeRequest;
 using bmi::GetComponentNameResponse;
@@ -32,9 +33,21 @@ class BmiServiceImpl final : public BmiService::Service {
       model = inmodel;
     }
     Status initialize(ServerContext* context, const InitializeRequest* request, ::bmi::Empty* response) override {
-      Function callback = model["bmi_initialize"];
+      std::cout << "My config file is " << request->config_file() << std::endl;
       CharacterVector config_file = CharacterVector::create(request->config_file());
-      callback(config_file);
+      try {
+        // auto members = as< std::vector< std::string >>(model.ls(true));
+        // for (int i=0;i < members.size();i++) {
+        //   std::cout << members[i] << std::endl;
+        // }
+        // return Status(StatusCode::INTERNAL, "Ouch");
+        // Function callback = model["bmi_initialize"];
+        // callback(config_file);
+        Function cb = f["foobar"];
+        cb();
+      } catch(const std::exception& e) {
+        return Status(StatusCode::INTERNAL, e.what());
+      }
       return Status::OK;
     }
     Status getComponentName(ServerContext* context, const Empty* request, GetComponentNameResponse* response) override {
@@ -65,4 +78,13 @@ void runServer(Environment model, std::string ip="0.0.0.0", std::string port="50
   std::unique_ptr<Server> server(builder.BuildAndStart());
   std::cout << "Server listening on " << server_address << std::endl;
   server->Wait();
+}
+
+//' Call a R func
+//'
+//' @export
+// [[Rcpp::export]]
+void callmyR(Environment f) {
+  Function cb = f["foobar"];
+  cb();
 }
