@@ -131,6 +131,35 @@ class UpdateCallData : public CallData {
   Empty response_;
 };
 
+class UpdateUntilCallData : public CallData {
+ public:
+  UpdateUntilCallData(BmiService::AsyncService *service, ServerCompletionQueue *cq,
+                 Function callback)
+      : CallData(service, cq, callback), writer_(&context_) {
+    service->RequestupdateUntil(&context_, &request_, &writer_, cq_, cq_, this);
+  }
+  void process(bool ok) final {
+    if (done_) {
+      new UpdateUntilCallData(service_, cq_, callback_);
+      delete this;
+    } else {
+      try {
+        NumericVector until = NumericVector::create(request_.until());
+        callback_(until);
+        writer_.Finish(response_, Status::OK, this);
+      } catch (const std::exception &e) {
+        writer_.FinishWithError(Status(StatusCode::INTERNAL, e.what()), this);
+      }
+      done_ = true;
+    }
+  }
+
+ private:
+  bmi::UpdateUntilRequest request_;
+  grpc::ServerAsyncResponseWriter<Empty> writer_;
+  Empty response_;
+};
+
 void handle(grpc::ServerCompletionQueue *cq) {
   void *tag = nullptr;
   bool ok = false;
@@ -165,6 +194,7 @@ void runAsyncMultiServer(Environment model, std::string ip = "0.0.0.0",
   new GetComponentNameCallData(&service, cq.get(), model["getComponentName"]);
   new InitializeCallData(&service, cq.get(), model["bmi_initialize"]);
   new UpdateCallData(&service, cq.get(), model["update"]);
+  new UpdateUntilCallData(&service, cq.get(), model["updateUntil"]);
 
   std::cout << "Server listening on " << addr << std::endl;
   handle(cq.get());

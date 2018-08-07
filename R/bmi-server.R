@@ -13,8 +13,9 @@ MockedBmi <- R6Class(
       print(config_file)
     },
     getComponentName = function() return('mock'),
-    foobar = function() {
+    updateUntil = function(until) {
       print('Been here')
+      print(until)
     }
   )
 )
