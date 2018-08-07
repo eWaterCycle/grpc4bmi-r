@@ -2,8 +2,10 @@
 
 export(AbstractBmi)
 export(MockedBmi)
+export(aserver)
 export(bla)
 export(callmyR)
 export(run)
+export(runAsyncServer)
 importFrom(Rcpp,evalCpp)
 useDynLib(grpc4bmi)

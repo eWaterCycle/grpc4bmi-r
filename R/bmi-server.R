@@ -37,3 +37,11 @@ bla <- function() {
 
   callmyR(model)
 }
+
+#' Run async server
+#'
+#' @export
+aserver <- function() {
+   model = MockedBmi$new()
+   runAsyncServer(model);
+}
