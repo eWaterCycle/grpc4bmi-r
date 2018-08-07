@@ -17,81 +17,122 @@ using namespace Rcpp;
 
 using grpc::ServerCompletionQueue;
 using grpc::Status;
+using grpc::StatusCode;
 using bmi::Empty;
 using bmi::InitializeRequest;
 using bmi::GetComponentNameResponse;
 using bmi::BmiService;
 
 class CallData {
-public:
-  CallData(BmiService::AsyncService* service, ServerCompletionQueue* cq, Function callback)
-   : cq_(cq), service_(service), callback_(callback) {
-
-   }
+ public:
+  CallData(BmiService::AsyncService *service, ServerCompletionQueue *cq,
+           Function callback)
+      : cq_(cq), service_(service), callback_(callback) {}
   virtual ~CallData() {}
   virtual void process(bool ok) = 0;
 
-protected:
+ protected:
   bool done_ = false;
   grpc::ServerContext context_;
-  grpc::ServerCompletionQueue* cq_;
-  BmiService::AsyncService* service_;
+  grpc::ServerCompletionQueue *cq_;
+  BmiService::AsyncService *service_;
   Function callback_;
-private:
-  CallData(const CallData&) = delete;
-  CallData& operator=(const CallData&) = delete;
+
+ private:
+  CallData(const CallData &) = delete;
+  CallData &operator=(const CallData &) = delete;
 };
 
 class GetComponentNameCallData : public CallData {
-  public:
-    GetComponentNameCallData(BmiService::AsyncService* service, ServerCompletionQueue* cq, Function callback)
-     : CallData(service, cq, callback), writer_(&context_)
-    {
-      service->RequestgetComponentName(&context_, &request_, &writer_, cq_, cq_, this);
-    }
-    void process(bool ok) final {
-      if (done_) {
-        new GetComponentNameCallData(service_, cq_, callback_);
-        delete this;
-      } else {
+ public:
+  GetComponentNameCallData(BmiService::AsyncService *service,
+                           ServerCompletionQueue *cq, Function callback)
+      : CallData(service, cq, callback), writer_(&context_) {
+    service->RequestgetComponentName(&context_, &request_, &writer_, cq_, cq_,
+                                     this);
+  }
+  void process(bool ok) final {
+    if (done_) {
+      new GetComponentNameCallData(service_, cq_, callback_);
+      delete this;
+    } else {
+      try {
         std::string name = as<std::string>(callback_());
         response_.set_name(name);
         writer_.Finish(response_, Status::OK, this);
-        done_ = true;
+      } catch (const std::exception &e) {
+        writer_.FinishWithError(Status(StatusCode::INTERNAL, e.what()), this);
       }
+      done_ = true;
     }
-  private:
-    Empty request_;
-    grpc::ServerAsyncResponseWriter<GetComponentNameResponse> writer_;
-    GetComponentNameResponse response_;
+  }
+
+ private:
+  Empty request_;
+  grpc::ServerAsyncResponseWriter<GetComponentNameResponse> writer_;
+  GetComponentNameResponse response_;
 };
 
 class InitializeCallData : public CallData {
-  public:
-    InitializeCallData(BmiService::AsyncService* service, ServerCompletionQueue* cq, Function callback)
-     : CallData(service, cq, callback), writer_(&context_)
-    {
-      service->Requestinitialize(&context_, &request_, &writer_, cq_, cq_, this);
-    }
-    void process(bool ok) final {
-      if (done_) {
-        new InitializeCallData(service_, cq_, callback_);
-        delete this;
-      } else {
-        CharacterVector config_file = CharacterVector::create(request_.config_file());
+ public:
+  InitializeCallData(BmiService::AsyncService *service,
+                     ServerCompletionQueue *cq, Function callback)
+      : CallData(service, cq, callback), writer_(&context_) {
+    service->Requestinitialize(&context_, &request_, &writer_, cq_, cq_, this);
+  }
+  void process(bool ok) final {
+    if (done_) {
+      new InitializeCallData(service_, cq_, callback_);
+      delete this;
+    } else {
+      try {
+        CharacterVector config_file =
+            CharacterVector::create(request_.config_file());
         callback_(config_file);
         writer_.Finish(response_, Status::OK, this);
-        done_ = true;
+      } catch (const std::exception &e) {
+        writer_.FinishWithError(Status(StatusCode::INTERNAL, e.what()), this);
       }
+      done_ = true;
     }
-  private:
-    InitializeRequest request_;
-    grpc::ServerAsyncResponseWriter<Empty> writer_;
-    Empty response_;
+  }
+
+ private:
+  InitializeRequest request_;
+  grpc::ServerAsyncResponseWriter<Empty> writer_;
+  Empty response_;
 };
 
-void handle(grpc::ServerCompletionQueue* cq) {
-  void* tag = nullptr;
+class UpdateCallData : public CallData {
+ public:
+  UpdateCallData(BmiService::AsyncService *service, ServerCompletionQueue *cq,
+                 Function callback)
+      : CallData(service, cq, callback), writer_(&context_) {
+    service->Requestupdate(&context_, &request_, &writer_, cq_, cq_, this);
+  }
+  void process(bool ok) final {
+    if (done_) {
+      new UpdateCallData(service_, cq_, callback_);
+      delete this;
+    } else {
+      try {
+        callback_();
+        writer_.Finish(response_, Status::OK, this);
+      } catch (const std::exception &e) {
+        writer_.FinishWithError(Status(StatusCode::INTERNAL, e.what()), this);
+      }
+      done_ = true;
+    }
+  }
+
+ private:
+  Empty request_;
+  grpc::ServerAsyncResponseWriter<Empty> writer_;
+  Empty response_;
+};
+
+void handle(grpc::ServerCompletionQueue *cq) {
+  void *tag = nullptr;
   bool ok = false;
   while (true) {
     std::cout << "Handle" << std::endl;
@@ -99,7 +140,7 @@ void handle(grpc::ServerCompletionQueue* cq) {
       // TODO: Need to retrieve remaining call data to delete.
       break;
     }
-    static_cast<CallData*>(tag)->process(ok);
+    static_cast<CallData *>(tag)->process(ok);
   }
 }
 
@@ -107,7 +148,8 @@ void handle(grpc::ServerCompletionQueue* cq) {
 //'
 //' @export
 // [[Rcpp::export]]
-void runAsyncMultiServer(Environment model, std::string ip="0.0.0.0", std::string port="50051") {
+void runAsyncMultiServer(Environment model, std::string ip = "0.0.0.0",
+                         std::string port = "50051") {
   grpc::ServerBuilder builder;
 
   std::string addr(ip + ":" + port);
@@ -122,6 +164,7 @@ void runAsyncMultiServer(Environment model, std::string ip="0.0.0.0", std::strin
 
   new GetComponentNameCallData(&service, cq.get(), model["getComponentName"]);
   new InitializeCallData(&service, cq.get(), model["bmi_initialize"]);
+  new UpdateCallData(&service, cq.get(), model["update"]);
 
   std::cout << "Server listening on " << addr << std::endl;
   handle(cq.get());
