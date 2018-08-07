@@ -9,6 +9,7 @@ MockedBmi <- R6Class(
   inherit = AbstractBmi,
   public = list(
     bmi_initialize = function(config_file) {
+      print('Running initialize')
       print(config_file)
     },
     getComponentName = function() return('mock'),
@@ -43,5 +44,5 @@ bla <- function() {
 #' @export
 aserver <- function() {
    model = MockedBmi$new()
-   runAsyncServer(model);
+   runAsyncMultiServer(model);
 }

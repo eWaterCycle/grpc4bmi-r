@@ -5,6 +5,18 @@
 
 using namespace Rcpp;
 
+// runAsyncMultiServer
+void runAsyncMultiServer(Environment model, std::string ip, std::string port);
+RcppExport SEXP _grpc4bmi_runAsyncMultiServer(SEXP modelSEXP, SEXP ipSEXP, SEXP portSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Environment >::type model(modelSEXP);
+    Rcpp::traits::input_parameter< std::string >::type ip(ipSEXP);
+    Rcpp::traits::input_parameter< std::string >::type port(portSEXP);
+    runAsyncMultiServer(model, ip, port);
+    return R_NilValue;
+END_RCPP
+}
 // runAsyncServer
 void runAsyncServer(Environment model);
 RcppExport SEXP _grpc4bmi_runAsyncServer(SEXP modelSEXP) {
@@ -39,6 +51,7 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_grpc4bmi_runAsyncMultiServer", (DL_FUNC) &_grpc4bmi_runAsyncMultiServer, 3},
     {"_grpc4bmi_runAsyncServer", (DL_FUNC) &_grpc4bmi_runAsyncServer, 1},
     {"_grpc4bmi_runServer", (DL_FUNC) &_grpc4bmi_runServer, 3},
     {"_grpc4bmi_callmyR", (DL_FUNC) &_grpc4bmi_callmyR, 1},
