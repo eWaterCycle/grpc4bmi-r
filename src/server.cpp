@@ -43,7 +43,7 @@ class BmiServiceImpl final : public BmiService::Service {
         // return Status(StatusCode::INTERNAL, "Ouch");
         // Function callback = model["bmi_initialize"];
         // callback(config_file);
-        Function cb = f["foobar"];
+        Function cb = model["foobar"];
         cb();
       } catch(const std::exception& e) {
         return Status(StatusCode::INTERNAL, e.what());
