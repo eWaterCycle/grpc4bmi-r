@@ -8,21 +8,3 @@ runAsyncMultiServer <- function(model, ip = "0.0.0.0", port = "50051") {
     invisible(.Call('_grpc4bmi_runAsyncMultiServer', PACKAGE = 'grpc4bmi', model, ip, port))
 }
 
-#' Run async grpc server using bmi model
-#'
-#' @export
-runAsyncServer <- function(model) {
-    invisible(.Call('_grpc4bmi_runAsyncServer', PACKAGE = 'grpc4bmi', model))
-}
-
-runServer <- function(model, ip = "0.0.0.0", port = "500051") {
-    invisible(.Call('_grpc4bmi_runServer', PACKAGE = 'grpc4bmi', model, ip, port))
-}
-
-#' Call a R func
-#'
-#' @export
-callmyR <- function(f) {
-    invisible(.Call('_grpc4bmi_callmyR', PACKAGE = 'grpc4bmi', f))
-}
-

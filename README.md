@@ -30,16 +30,22 @@ Rscript -e 'grpc4bmi::run()'
 
 ## Generate man pages
 
-```
+```bash
 Rscript -e "devtools::document(roclets=c('rd', 'collate', 'namespace'))"
 ```
 
+## Generate cpp files from proto file
 
-```
+```bash
 cd src
 protoc -I ../inst/proto --grpc_out=. --plugin=protoc-gen-grpc=`which grpc_cpp_plugin` .../inst/proto/bmi.proto
 protoc -I ../inst/proto --cpp_out=. .../inst/proto/bmi.proto
 cd -
+```
+
+## Local build & install
+
+```bash
 Rscript -e 'Rcpp::compileAttributes();devtools::document()'
 R CMD INSTALL .
 Rscript -e 'grpc4bmi::run()'

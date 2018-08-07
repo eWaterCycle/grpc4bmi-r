@@ -13,37 +13,42 @@ MockedBmi <- R6Class(
       print(config_file)
     },
     getComponentName = function() return('mock'),
-    updateUntil = function(until) {
+    updateFrac = function(arg) {
       print('Been here')
-      print(until)
-    }
+      print(arg)
+    },
+    getInputVarNameCount = function() return(42),
+    getInputVarNames = function() return(c('ETact', 'Q', 'fGS', 'fQS', 'dV', 'dVeq', 'dG', 'hQ', 'hS', 'w'))
   )
 )
 
-#' Start a gRPC server wrapping a bmi model
+#' Command line interface of grpc4 bmi server
+#' Use following environment variables for configuration:
 #'
-#' @return none
+#' * BMI_MODULE, file which contains bmi class
+#' * BMI_CLASS, class name which subclasses AbstractBmi
+#' * BMI_PORT, a tcp port number to run the server on
+#'
 #' @export
 run <- function() {
-  model = MockedBmi$new()
+    module = Sys.getenv('BMI_MODULE')
+    if (module != "") {
+     source(module)
+    }
 
-  runServer(model, port="55555")
-  invisible(NULL)
+    class = Sys.getenv('BMI_CLASS')
+    if (class == "") {
+     stop("Require BMI_CLASS environment variable with name of class which implements the bmi interface")
+    }
+    model <- get(class)$new()
+
+    port = Sys.getenv('BMI_PORT', '55555')
+   runAsyncMultiServer(model, port);
 }
 
-#' Call R func via cpp
-#'
+#' Start a gRPC server wrapping a mocked bmi model
 #' @export
-bla <- function() {
-  model = MockedBmi$new()
-
-  callmyR(model)
-}
-
-#' Run async server
-#'
-#' @export
-aserver <- function() {
+runMocked <- function() {
    model = MockedBmi$new()
    runAsyncMultiServer(model);
 }
