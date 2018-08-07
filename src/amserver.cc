@@ -24,12 +24,19 @@ using bmi::BmiService;
 
 class CallData {
 public:
+  CallData(BmiService::AsyncService* service, ServerCompletionQueue* cq, Function callback)
+   : cq_(cq), service_(service), callback_(callback) {
+
+   }
   virtual ~CallData() {}
   virtual void process(bool ok) = 0;
 
 protected:
-  CallData() {}
-
+  bool done_ = false;
+  grpc::ServerContext context_;
+  grpc::ServerCompletionQueue* cq_;
+  BmiService::AsyncService* service_;
+  Function callback_;
 private:
   CallData(const CallData&) = delete;
   CallData& operator=(const CallData&) = delete;
@@ -38,7 +45,7 @@ private:
 class GetComponentNameCallData : public CallData {
   public:
     GetComponentNameCallData(BmiService::AsyncService* service, ServerCompletionQueue* cq, Function callback)
-     : cq_(cq), service_(service), writer_(&context_), callback_(callback)
+     : CallData(service, cq, callback), writer_(&context_)
     {
       service->RequestgetComponentName(&context_, &request_, &writer_, cq_, cq_, this);
     }
@@ -54,20 +61,15 @@ class GetComponentNameCallData : public CallData {
       }
     }
   private:
-    bool done_ = false;
-    grpc::ServerContext context_;
-    grpc::ServerCompletionQueue* cq_;
-    BmiService::AsyncService* service_;
     Empty request_;
     grpc::ServerAsyncResponseWriter<GetComponentNameResponse> writer_;
     GetComponentNameResponse response_;
-    Function callback_;
 };
 
 class InitializeCallData : public CallData {
   public:
     InitializeCallData(BmiService::AsyncService* service, ServerCompletionQueue* cq, Function callback)
-     : cq_(cq), service_(service), writer_(&context_), callback_(callback)
+     : CallData(service, cq, callback), writer_(&context_)
     {
       service->Requestinitialize(&context_, &request_, &writer_, cq_, cq_, this);
     }
@@ -83,14 +85,9 @@ class InitializeCallData : public CallData {
       }
     }
   private:
-    bool done_ = false;
-    grpc::ServerContext context_;
-    grpc::ServerCompletionQueue* cq_;
-    BmiService::AsyncService* service_;
     InitializeRequest request_;
     grpc::ServerAsyncResponseWriter<Empty> writer_;
     Empty response_;
-    Function callback_;
 };
 
 void handle(grpc::ServerCompletionQueue* cq) {
