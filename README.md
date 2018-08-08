@@ -6,7 +6,7 @@ See https://github.com/eWaterCycle/grpc4bmi for the Python server/client impleme
 
 System requirements:
 * Protobuf
-* grpc
+* [grpc](https://github.com/grpc/grpc/blob/master/BUILDING.md) >=v1.14.x
 
 From R
 

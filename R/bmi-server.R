@@ -18,7 +18,17 @@ MockedBmi <- R6Class(
       print(arg)
     },
     getInputVarNameCount = function() return(42),
-    getInputVarNames = function() return(c('ETact', 'Q', 'fGS', 'fQS', 'dV', 'dVeq', 'dG', 'hQ', 'hS', 'w'))
+    getInputVarNames = function() return(c('ETact', 'Q', 'fGS', 'fQS', 'dV', 'dVeq', 'dG', 'hQ', 'hS', 'w')),
+    getVarGrid = function(name) {
+      print(name);
+      return(1);
+    },
+    getValue = function(name) {
+      print(name);
+      return(array(1, dim=c(2,3,4)))
+      # return(array(as.integer(1), dim=c(2,3,4)))
+      # return(array("1", dim=c(2,3,4)))
+    }
   )
 )
 
