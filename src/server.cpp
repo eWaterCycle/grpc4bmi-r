@@ -676,15 +676,17 @@ class GetValueCallData : public CallData {
         switch(TYPEOF(values)) {
           case REALSXP: {
             NumericVector double_values = as<NumericVector>(values);
+            bmi::DoubleArrayMessage* msg = response_.mutable_values_double();
             for( int i=0; i < double_values.size(); i++ ) {
-              response_.add_values_double(double_values[i]);
+              msg->add_values(double_values[i]);
             }
-           break;
+            break;
           }
           case INTSXP: {
             IntegerVector int_values = as<IntegerVector>(values);
+            bmi::IntArrayMessage* msg = response_.mutable_values_int();
             for( int i=0; i < int_values.size(); i++ ) {
-              response_.add_values_int(int_values[i]);
+              msg->add_values(int_values[i]);
             }
             break;
           }
@@ -698,6 +700,7 @@ class GetValueCallData : public CallData {
         }
         writer_.Finish(response_, Status::OK, this);
       } catch (const std::exception &e) {
+        std::cout << "catched" << e.what() << std::endl;
         writer_.FinishWithError(Status(StatusCode::INTERNAL, e.what()), this);
       }
       done_ = true;
@@ -729,15 +732,17 @@ class GetValueAtIndicesCallData : public CallData {
         switch(TYPEOF(values)) {
           case REALSXP: {
             NumericVector double_values = as<NumericVector>(values);
+            bmi::DoubleArrayMessage* msg = response_.mutable_values_double();
             for( int i=0; i < double_values.size(); i++ ) {
-              response_.add_values_double(double_values[i]);
+              msg->add_values(double_values[i]);
             }
-           break;
+            break;
           }
           case INTSXP: {
             IntegerVector int_values = as<IntegerVector>(values);
+            bmi::IntArrayMessage* msg = response_.mutable_values_int();
             for( int i=0; i < int_values.size(); i++ ) {
-              response_.add_values_int(int_values[i]);
+              msg->add_values(int_values[i]);
             }
             break;
           }
@@ -778,16 +783,16 @@ class SetValueCallData : public CallData {
       try {
         StringVector name = StringVector::create(request_.name());
         IntegerVector shape = intrepeat2vector(request_.shape());
-        IntegerVector ints = intrepeat2vector(request_.values_int());
-        DoubleVector values_float = floatrepeat2vector(request_.values_float());
-        DoubleVector values_double = doublerepeat2vector(request_.values_double());
-        if (ints.size() > 0) {
+        if (request_.has_values_int()) {
+          IntegerVector ints = intrepeat2vector(request_.mutable_values_int()->values());
           ints.attr("dim") = shape;
           callback_(name, ints);
-        } else if (values_float.size() > 0) {
+        } else if (request_.has_values_float()) {
+          DoubleVector values_float = floatrepeat2vector(request_.mutable_values_float()->values());
           values_float.attr("dim") = shape;
           callback_(name, values_float);
         } else {
+          DoubleVector values_double = doublerepeat2vector(request_.mutable_values_double()->values());
           values_double.attr("dim") = shape;
           callback_(name, values_double);
         }
@@ -819,15 +824,15 @@ class SetValueAtIndicesCallData : public CallData {
     } else {
       try {
         StringVector name = StringVector::create(request_.name());
-        IntegerVector indices = intrepeat2vector(request_.values_int());
-        IntegerVector ints = intrepeat2vector(request_.values_int());
-        DoubleVector values_float = floatrepeat2vector(request_.values_float());
-        DoubleVector values_double = doublerepeat2vector(request_.values_double());
-        if (ints.size() > 0) {
+        IntegerVector indices = intrepeat2vector(request_.indices());
+        if (request_.has_values_int()) {
+          IntegerVector ints = intrepeat2vector(request_.mutable_values_int()->values());
           callback_(name, indices, ints);
-        } else if (values_float.size() > 0) {
+        } else if (request_.has_values_float()) {
+          DoubleVector values_float = floatrepeat2vector(request_.mutable_values_float()->values());
           callback_(name, indices, values_float);
         } else {
+          DoubleVector values_double = doublerepeat2vector(request_.mutable_values_double()->values());
           callback_(name, indices, values_double);
         }
         writer_.Finish(response_, Status::OK, this);

@@ -36,7 +36,7 @@ namespace protobuf_bmi_2eproto {
 struct TableStruct {
   static const ::google::protobuf::internal::ParseTableField entries[];
   static const ::google::protobuf::internal::AuxillaryParseTableField aux[];
-  static const ::google::protobuf::internal::ParseTable schema[33];
+  static const ::google::protobuf::internal::ParseTable schema[36];
   static const ::google::protobuf::internal::FieldMetadata field_metadata[];
   static const ::google::protobuf::internal::SerializationTable serialization_table[];
   static const ::google::protobuf::uint32 offsets[];
@@ -74,6 +74,12 @@ void InitDefaultsGetVarUnitsResponseImpl();
 void InitDefaultsGetVarUnitsResponse();
 void InitDefaultsGetVarNBytesResponseImpl();
 void InitDefaultsGetVarNBytesResponse();
+void InitDefaultsIntArrayMessageImpl();
+void InitDefaultsIntArrayMessage();
+void InitDefaultsFloatArrayMessageImpl();
+void InitDefaultsFloatArrayMessage();
+void InitDefaultsDoubleArrayMessageImpl();
+void InitDefaultsDoubleArrayMessage();
 void InitDefaultsGetValueResponseImpl();
 void InitDefaultsGetValueResponse();
 void InitDefaultsGetValueAtIndicesRequestImpl();
@@ -125,6 +131,9 @@ inline void InitDefaults() {
   InitDefaultsGetVarItemSizeResponse();
   InitDefaultsGetVarUnitsResponse();
   InitDefaultsGetVarNBytesResponse();
+  InitDefaultsIntArrayMessage();
+  InitDefaultsFloatArrayMessage();
+  InitDefaultsDoubleArrayMessage();
   InitDefaultsGetValueResponse();
   InitDefaultsGetValueAtIndicesRequest();
   InitDefaultsGetValueAtIndicesResponse();
@@ -145,9 +154,15 @@ inline void InitDefaults() {
 }
 }  // namespace protobuf_bmi_2eproto
 namespace bmi {
+class DoubleArrayMessage;
+class DoubleArrayMessageDefaultTypeInternal;
+extern DoubleArrayMessageDefaultTypeInternal _DoubleArrayMessage_default_instance_;
 class Empty;
 class EmptyDefaultTypeInternal;
 extern EmptyDefaultTypeInternal _Empty_default_instance_;
+class FloatArrayMessage;
+class FloatArrayMessageDefaultTypeInternal;
+extern FloatArrayMessageDefaultTypeInternal _FloatArrayMessage_default_instance_;
 class GetComponentNameResponse;
 class GetComponentNameResponseDefaultTypeInternal;
 extern GetComponentNameResponseDefaultTypeInternal _GetComponentNameResponse_default_instance_;
@@ -229,6 +244,9 @@ extern GridRequestDefaultTypeInternal _GridRequest_default_instance_;
 class InitializeRequest;
 class InitializeRequestDefaultTypeInternal;
 extern InitializeRequestDefaultTypeInternal _InitializeRequest_default_instance_;
+class IntArrayMessage;
+class IntArrayMessageDefaultTypeInternal;
+extern IntArrayMessageDefaultTypeInternal _IntArrayMessage_default_instance_;
 class SetValueAtIndicesRequest;
 class SetValueAtIndicesRequestDefaultTypeInternal;
 extern SetValueAtIndicesRequestDefaultTypeInternal _SetValueAtIndicesRequest_default_instance_;
@@ -1890,6 +1908,324 @@ class GetVarNBytesResponse : public ::google::protobuf::Message /* @@protoc_inse
 };
 // -------------------------------------------------------------------
 
+class IntArrayMessage : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:bmi.IntArrayMessage) */ {
+ public:
+  IntArrayMessage();
+  virtual ~IntArrayMessage();
+
+  IntArrayMessage(const IntArrayMessage& from);
+
+  inline IntArrayMessage& operator=(const IntArrayMessage& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  IntArrayMessage(IntArrayMessage&& from) noexcept
+    : IntArrayMessage() {
+    *this = ::std::move(from);
+  }
+
+  inline IntArrayMessage& operator=(IntArrayMessage&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const IntArrayMessage& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const IntArrayMessage* internal_default_instance() {
+    return reinterpret_cast<const IntArrayMessage*>(
+               &_IntArrayMessage_default_instance_);
+  }
+  static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
+    16;
+
+  void Swap(IntArrayMessage* other);
+  friend void swap(IntArrayMessage& a, IntArrayMessage& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline IntArrayMessage* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  IntArrayMessage* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const IntArrayMessage& from);
+  void MergeFrom(const IntArrayMessage& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(IntArrayMessage* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // repeated int32 values = 1 [packed = true];
+  int values_size() const;
+  void clear_values();
+  static const int kValuesFieldNumber = 1;
+  ::google::protobuf::int32 values(int index) const;
+  void set_values(int index, ::google::protobuf::int32 value);
+  void add_values(::google::protobuf::int32 value);
+  const ::google::protobuf::RepeatedField< ::google::protobuf::int32 >&
+      values() const;
+  ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
+      mutable_values();
+
+  // @@protoc_insertion_point(class_scope:bmi.IntArrayMessage)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::RepeatedField< ::google::protobuf::int32 > values_;
+  mutable int _values_cached_byte_size_;
+  mutable int _cached_size_;
+  friend struct ::protobuf_bmi_2eproto::TableStruct;
+  friend void ::protobuf_bmi_2eproto::InitDefaultsIntArrayMessageImpl();
+};
+// -------------------------------------------------------------------
+
+class FloatArrayMessage : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:bmi.FloatArrayMessage) */ {
+ public:
+  FloatArrayMessage();
+  virtual ~FloatArrayMessage();
+
+  FloatArrayMessage(const FloatArrayMessage& from);
+
+  inline FloatArrayMessage& operator=(const FloatArrayMessage& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  FloatArrayMessage(FloatArrayMessage&& from) noexcept
+    : FloatArrayMessage() {
+    *this = ::std::move(from);
+  }
+
+  inline FloatArrayMessage& operator=(FloatArrayMessage&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const FloatArrayMessage& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const FloatArrayMessage* internal_default_instance() {
+    return reinterpret_cast<const FloatArrayMessage*>(
+               &_FloatArrayMessage_default_instance_);
+  }
+  static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
+    17;
+
+  void Swap(FloatArrayMessage* other);
+  friend void swap(FloatArrayMessage& a, FloatArrayMessage& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline FloatArrayMessage* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  FloatArrayMessage* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const FloatArrayMessage& from);
+  void MergeFrom(const FloatArrayMessage& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(FloatArrayMessage* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // repeated float values = 1 [packed = true];
+  int values_size() const;
+  void clear_values();
+  static const int kValuesFieldNumber = 1;
+  float values(int index) const;
+  void set_values(int index, float value);
+  void add_values(float value);
+  const ::google::protobuf::RepeatedField< float >&
+      values() const;
+  ::google::protobuf::RepeatedField< float >*
+      mutable_values();
+
+  // @@protoc_insertion_point(class_scope:bmi.FloatArrayMessage)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::RepeatedField< float > values_;
+  mutable int _values_cached_byte_size_;
+  mutable int _cached_size_;
+  friend struct ::protobuf_bmi_2eproto::TableStruct;
+  friend void ::protobuf_bmi_2eproto::InitDefaultsFloatArrayMessageImpl();
+};
+// -------------------------------------------------------------------
+
+class DoubleArrayMessage : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:bmi.DoubleArrayMessage) */ {
+ public:
+  DoubleArrayMessage();
+  virtual ~DoubleArrayMessage();
+
+  DoubleArrayMessage(const DoubleArrayMessage& from);
+
+  inline DoubleArrayMessage& operator=(const DoubleArrayMessage& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  DoubleArrayMessage(DoubleArrayMessage&& from) noexcept
+    : DoubleArrayMessage() {
+    *this = ::std::move(from);
+  }
+
+  inline DoubleArrayMessage& operator=(DoubleArrayMessage&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const DoubleArrayMessage& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const DoubleArrayMessage* internal_default_instance() {
+    return reinterpret_cast<const DoubleArrayMessage*>(
+               &_DoubleArrayMessage_default_instance_);
+  }
+  static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
+    18;
+
+  void Swap(DoubleArrayMessage* other);
+  friend void swap(DoubleArrayMessage& a, DoubleArrayMessage& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline DoubleArrayMessage* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  DoubleArrayMessage* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const DoubleArrayMessage& from);
+  void MergeFrom(const DoubleArrayMessage& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(DoubleArrayMessage* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // repeated double values = 1 [packed = true];
+  int values_size() const;
+  void clear_values();
+  static const int kValuesFieldNumber = 1;
+  double values(int index) const;
+  void set_values(int index, double value);
+  void add_values(double value);
+  const ::google::protobuf::RepeatedField< double >&
+      values() const;
+  ::google::protobuf::RepeatedField< double >*
+      mutable_values();
+
+  // @@protoc_insertion_point(class_scope:bmi.DoubleArrayMessage)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::RepeatedField< double > values_;
+  mutable int _values_cached_byte_size_;
+  mutable int _cached_size_;
+  friend struct ::protobuf_bmi_2eproto::TableStruct;
+  friend void ::protobuf_bmi_2eproto::InitDefaultsDoubleArrayMessageImpl();
+};
+// -------------------------------------------------------------------
+
 class GetValueResponse : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:bmi.GetValueResponse) */ {
  public:
   GetValueResponse();
@@ -1919,13 +2255,20 @@ class GetValueResponse : public ::google::protobuf::Message /* @@protoc_insertio
   static const ::google::protobuf::Descriptor* descriptor();
   static const GetValueResponse& default_instance();
 
+  enum ValuesCase {
+    kValuesInt = 1,
+    kValuesFloat = 2,
+    kValuesDouble = 3,
+    VALUES_NOT_SET = 0,
+  };
+
   static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
   static inline const GetValueResponse* internal_default_instance() {
     return reinterpret_cast<const GetValueResponse*>(
                &_GetValueResponse_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    16;
+    19;
 
   void Swap(GetValueResponse* other);
   friend void swap(GetValueResponse& a, GetValueResponse& b) {
@@ -1972,42 +2315,6 @@ class GetValueResponse : public ::google::protobuf::Message /* @@protoc_insertio
 
   // accessors -------------------------------------------------------
 
-  // repeated int32 values_int = 1 [packed = true];
-  int values_int_size() const;
-  void clear_values_int();
-  static const int kValuesIntFieldNumber = 1;
-  ::google::protobuf::int32 values_int(int index) const;
-  void set_values_int(int index, ::google::protobuf::int32 value);
-  void add_values_int(::google::protobuf::int32 value);
-  const ::google::protobuf::RepeatedField< ::google::protobuf::int32 >&
-      values_int() const;
-  ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
-      mutable_values_int();
-
-  // repeated float values_float = 2 [packed = true];
-  int values_float_size() const;
-  void clear_values_float();
-  static const int kValuesFloatFieldNumber = 2;
-  float values_float(int index) const;
-  void set_values_float(int index, float value);
-  void add_values_float(float value);
-  const ::google::protobuf::RepeatedField< float >&
-      values_float() const;
-  ::google::protobuf::RepeatedField< float >*
-      mutable_values_float();
-
-  // repeated double values_double = 3 [packed = true];
-  int values_double_size() const;
-  void clear_values_double();
-  static const int kValuesDoubleFieldNumber = 3;
-  double values_double(int index) const;
-  void set_values_double(int index, double value);
-  void add_values_double(double value);
-  const ::google::protobuf::RepeatedField< double >&
-      values_double() const;
-  ::google::protobuf::RepeatedField< double >*
-      mutable_values_double();
-
   // repeated int32 shape = 4 [packed = true];
   int shape_size() const;
   void clear_shape();
@@ -2020,19 +2327,56 @@ class GetValueResponse : public ::google::protobuf::Message /* @@protoc_insertio
   ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
       mutable_shape();
 
+  // .bmi.IntArrayMessage values_int = 1;
+  bool has_values_int() const;
+  void clear_values_int();
+  static const int kValuesIntFieldNumber = 1;
+  const ::bmi::IntArrayMessage& values_int() const;
+  ::bmi::IntArrayMessage* release_values_int();
+  ::bmi::IntArrayMessage* mutable_values_int();
+  void set_allocated_values_int(::bmi::IntArrayMessage* values_int);
+
+  // .bmi.FloatArrayMessage values_float = 2;
+  bool has_values_float() const;
+  void clear_values_float();
+  static const int kValuesFloatFieldNumber = 2;
+  const ::bmi::FloatArrayMessage& values_float() const;
+  ::bmi::FloatArrayMessage* release_values_float();
+  ::bmi::FloatArrayMessage* mutable_values_float();
+  void set_allocated_values_float(::bmi::FloatArrayMessage* values_float);
+
+  // .bmi.DoubleArrayMessage values_double = 3;
+  bool has_values_double() const;
+  void clear_values_double();
+  static const int kValuesDoubleFieldNumber = 3;
+  const ::bmi::DoubleArrayMessage& values_double() const;
+  ::bmi::DoubleArrayMessage* release_values_double();
+  ::bmi::DoubleArrayMessage* mutable_values_double();
+  void set_allocated_values_double(::bmi::DoubleArrayMessage* values_double);
+
+  ValuesCase values_case() const;
   // @@protoc_insertion_point(class_scope:bmi.GetValueResponse)
  private:
+  void set_has_values_int();
+  void set_has_values_float();
+  void set_has_values_double();
+
+  inline bool has_values() const;
+  void clear_values();
+  inline void clear_has_values();
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  ::google::protobuf::RepeatedField< ::google::protobuf::int32 > values_int_;
-  mutable int _values_int_cached_byte_size_;
-  ::google::protobuf::RepeatedField< float > values_float_;
-  mutable int _values_float_cached_byte_size_;
-  ::google::protobuf::RepeatedField< double > values_double_;
-  mutable int _values_double_cached_byte_size_;
   ::google::protobuf::RepeatedField< ::google::protobuf::int32 > shape_;
   mutable int _shape_cached_byte_size_;
+  union ValuesUnion {
+    ValuesUnion() {}
+    ::bmi::IntArrayMessage* values_int_;
+    ::bmi::FloatArrayMessage* values_float_;
+    ::bmi::DoubleArrayMessage* values_double_;
+  } values_;
   mutable int _cached_size_;
+  ::google::protobuf::uint32 _oneof_case_[1];
+
   friend struct ::protobuf_bmi_2eproto::TableStruct;
   friend void ::protobuf_bmi_2eproto::InitDefaultsGetValueResponseImpl();
 };
@@ -2073,7 +2417,7 @@ class GetValueAtIndicesRequest : public ::google::protobuf::Message /* @@protoc_
                &_GetValueAtIndicesRequest_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    17;
+    20;
 
   void Swap(GetValueAtIndicesRequest* other);
   friend void swap(GetValueAtIndicesRequest& a, GetValueAtIndicesRequest& b) {
@@ -2195,13 +2539,20 @@ class GetValueAtIndicesResponse : public ::google::protobuf::Message /* @@protoc
   static const ::google::protobuf::Descriptor* descriptor();
   static const GetValueAtIndicesResponse& default_instance();
 
+  enum ValuesCase {
+    kValuesInt = 1,
+    kValuesFloat = 2,
+    kValuesDouble = 3,
+    VALUES_NOT_SET = 0,
+  };
+
   static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
   static inline const GetValueAtIndicesResponse* internal_default_instance() {
     return reinterpret_cast<const GetValueAtIndicesResponse*>(
                &_GetValueAtIndicesResponse_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    18;
+    21;
 
   void Swap(GetValueAtIndicesResponse* other);
   friend void swap(GetValueAtIndicesResponse& a, GetValueAtIndicesResponse& b) {
@@ -2248,42 +2599,6 @@ class GetValueAtIndicesResponse : public ::google::protobuf::Message /* @@protoc
 
   // accessors -------------------------------------------------------
 
-  // repeated int32 values_int = 1 [packed = true];
-  int values_int_size() const;
-  void clear_values_int();
-  static const int kValuesIntFieldNumber = 1;
-  ::google::protobuf::int32 values_int(int index) const;
-  void set_values_int(int index, ::google::protobuf::int32 value);
-  void add_values_int(::google::protobuf::int32 value);
-  const ::google::protobuf::RepeatedField< ::google::protobuf::int32 >&
-      values_int() const;
-  ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
-      mutable_values_int();
-
-  // repeated float values_float = 2 [packed = true];
-  int values_float_size() const;
-  void clear_values_float();
-  static const int kValuesFloatFieldNumber = 2;
-  float values_float(int index) const;
-  void set_values_float(int index, float value);
-  void add_values_float(float value);
-  const ::google::protobuf::RepeatedField< float >&
-      values_float() const;
-  ::google::protobuf::RepeatedField< float >*
-      mutable_values_float();
-
-  // repeated double values_double = 3 [packed = true];
-  int values_double_size() const;
-  void clear_values_double();
-  static const int kValuesDoubleFieldNumber = 3;
-  double values_double(int index) const;
-  void set_values_double(int index, double value);
-  void add_values_double(double value);
-  const ::google::protobuf::RepeatedField< double >&
-      values_double() const;
-  ::google::protobuf::RepeatedField< double >*
-      mutable_values_double();
-
   // repeated int32 shape = 4 [packed = true];
   int shape_size() const;
   void clear_shape();
@@ -2296,19 +2611,56 @@ class GetValueAtIndicesResponse : public ::google::protobuf::Message /* @@protoc
   ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
       mutable_shape();
 
+  // .bmi.IntArrayMessage values_int = 1;
+  bool has_values_int() const;
+  void clear_values_int();
+  static const int kValuesIntFieldNumber = 1;
+  const ::bmi::IntArrayMessage& values_int() const;
+  ::bmi::IntArrayMessage* release_values_int();
+  ::bmi::IntArrayMessage* mutable_values_int();
+  void set_allocated_values_int(::bmi::IntArrayMessage* values_int);
+
+  // .bmi.FloatArrayMessage values_float = 2;
+  bool has_values_float() const;
+  void clear_values_float();
+  static const int kValuesFloatFieldNumber = 2;
+  const ::bmi::FloatArrayMessage& values_float() const;
+  ::bmi::FloatArrayMessage* release_values_float();
+  ::bmi::FloatArrayMessage* mutable_values_float();
+  void set_allocated_values_float(::bmi::FloatArrayMessage* values_float);
+
+  // .bmi.DoubleArrayMessage values_double = 3;
+  bool has_values_double() const;
+  void clear_values_double();
+  static const int kValuesDoubleFieldNumber = 3;
+  const ::bmi::DoubleArrayMessage& values_double() const;
+  ::bmi::DoubleArrayMessage* release_values_double();
+  ::bmi::DoubleArrayMessage* mutable_values_double();
+  void set_allocated_values_double(::bmi::DoubleArrayMessage* values_double);
+
+  ValuesCase values_case() const;
   // @@protoc_insertion_point(class_scope:bmi.GetValueAtIndicesResponse)
  private:
+  void set_has_values_int();
+  void set_has_values_float();
+  void set_has_values_double();
+
+  inline bool has_values() const;
+  void clear_values();
+  inline void clear_has_values();
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  ::google::protobuf::RepeatedField< ::google::protobuf::int32 > values_int_;
-  mutable int _values_int_cached_byte_size_;
-  ::google::protobuf::RepeatedField< float > values_float_;
-  mutable int _values_float_cached_byte_size_;
-  ::google::protobuf::RepeatedField< double > values_double_;
-  mutable int _values_double_cached_byte_size_;
   ::google::protobuf::RepeatedField< ::google::protobuf::int32 > shape_;
   mutable int _shape_cached_byte_size_;
+  union ValuesUnion {
+    ValuesUnion() {}
+    ::bmi::IntArrayMessage* values_int_;
+    ::bmi::FloatArrayMessage* values_float_;
+    ::bmi::DoubleArrayMessage* values_double_;
+  } values_;
   mutable int _cached_size_;
+  ::google::protobuf::uint32 _oneof_case_[1];
+
   friend struct ::protobuf_bmi_2eproto::TableStruct;
   friend void ::protobuf_bmi_2eproto::InitDefaultsGetValueAtIndicesResponseImpl();
 };
@@ -2343,13 +2695,20 @@ class SetValueRequest : public ::google::protobuf::Message /* @@protoc_insertion
   static const ::google::protobuf::Descriptor* descriptor();
   static const SetValueRequest& default_instance();
 
+  enum ValuesCase {
+    kValuesInt = 2,
+    kValuesFloat = 3,
+    kValuesDouble = 4,
+    VALUES_NOT_SET = 0,
+  };
+
   static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
   static inline const SetValueRequest* internal_default_instance() {
     return reinterpret_cast<const SetValueRequest*>(
                &_SetValueRequest_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    19;
+    22;
 
   void Swap(SetValueRequest* other);
   friend void swap(SetValueRequest& a, SetValueRequest& b) {
@@ -2396,42 +2755,6 @@ class SetValueRequest : public ::google::protobuf::Message /* @@protoc_insertion
 
   // accessors -------------------------------------------------------
 
-  // repeated int32 values_int = 2 [packed = true];
-  int values_int_size() const;
-  void clear_values_int();
-  static const int kValuesIntFieldNumber = 2;
-  ::google::protobuf::int32 values_int(int index) const;
-  void set_values_int(int index, ::google::protobuf::int32 value);
-  void add_values_int(::google::protobuf::int32 value);
-  const ::google::protobuf::RepeatedField< ::google::protobuf::int32 >&
-      values_int() const;
-  ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
-      mutable_values_int();
-
-  // repeated float values_float = 3 [packed = true];
-  int values_float_size() const;
-  void clear_values_float();
-  static const int kValuesFloatFieldNumber = 3;
-  float values_float(int index) const;
-  void set_values_float(int index, float value);
-  void add_values_float(float value);
-  const ::google::protobuf::RepeatedField< float >&
-      values_float() const;
-  ::google::protobuf::RepeatedField< float >*
-      mutable_values_float();
-
-  // repeated double values_double = 4 [packed = true];
-  int values_double_size() const;
-  void clear_values_double();
-  static const int kValuesDoubleFieldNumber = 4;
-  double values_double(int index) const;
-  void set_values_double(int index, double value);
-  void add_values_double(double value);
-  const ::google::protobuf::RepeatedField< double >&
-      values_double() const;
-  ::google::protobuf::RepeatedField< double >*
-      mutable_values_double();
-
   // repeated int32 shape = 5 [packed = true];
   int shape_size() const;
   void clear_shape();
@@ -2458,20 +2781,57 @@ class SetValueRequest : public ::google::protobuf::Message /* @@protoc_insertion
   ::std::string* release_name();
   void set_allocated_name(::std::string* name);
 
+  // .bmi.IntArrayMessage values_int = 2;
+  bool has_values_int() const;
+  void clear_values_int();
+  static const int kValuesIntFieldNumber = 2;
+  const ::bmi::IntArrayMessage& values_int() const;
+  ::bmi::IntArrayMessage* release_values_int();
+  ::bmi::IntArrayMessage* mutable_values_int();
+  void set_allocated_values_int(::bmi::IntArrayMessage* values_int);
+
+  // .bmi.FloatArrayMessage values_float = 3;
+  bool has_values_float() const;
+  void clear_values_float();
+  static const int kValuesFloatFieldNumber = 3;
+  const ::bmi::FloatArrayMessage& values_float() const;
+  ::bmi::FloatArrayMessage* release_values_float();
+  ::bmi::FloatArrayMessage* mutable_values_float();
+  void set_allocated_values_float(::bmi::FloatArrayMessage* values_float);
+
+  // .bmi.DoubleArrayMessage values_double = 4;
+  bool has_values_double() const;
+  void clear_values_double();
+  static const int kValuesDoubleFieldNumber = 4;
+  const ::bmi::DoubleArrayMessage& values_double() const;
+  ::bmi::DoubleArrayMessage* release_values_double();
+  ::bmi::DoubleArrayMessage* mutable_values_double();
+  void set_allocated_values_double(::bmi::DoubleArrayMessage* values_double);
+
+  ValuesCase values_case() const;
   // @@protoc_insertion_point(class_scope:bmi.SetValueRequest)
  private:
+  void set_has_values_int();
+  void set_has_values_float();
+  void set_has_values_double();
+
+  inline bool has_values() const;
+  void clear_values();
+  inline void clear_has_values();
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  ::google::protobuf::RepeatedField< ::google::protobuf::int32 > values_int_;
-  mutable int _values_int_cached_byte_size_;
-  ::google::protobuf::RepeatedField< float > values_float_;
-  mutable int _values_float_cached_byte_size_;
-  ::google::protobuf::RepeatedField< double > values_double_;
-  mutable int _values_double_cached_byte_size_;
   ::google::protobuf::RepeatedField< ::google::protobuf::int32 > shape_;
   mutable int _shape_cached_byte_size_;
   ::google::protobuf::internal::ArenaStringPtr name_;
+  union ValuesUnion {
+    ValuesUnion() {}
+    ::bmi::IntArrayMessage* values_int_;
+    ::bmi::FloatArrayMessage* values_float_;
+    ::bmi::DoubleArrayMessage* values_double_;
+  } values_;
   mutable int _cached_size_;
+  ::google::protobuf::uint32 _oneof_case_[1];
+
   friend struct ::protobuf_bmi_2eproto::TableStruct;
   friend void ::protobuf_bmi_2eproto::InitDefaultsSetValueRequestImpl();
 };
@@ -2512,7 +2872,7 @@ class SetValuePtrRequest : public ::google::protobuf::Message /* @@protoc_insert
                &_SetValuePtrRequest_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    20;
+    23;
 
   void Swap(SetValuePtrRequest* other);
   friend void swap(SetValuePtrRequest& a, SetValuePtrRequest& b) {
@@ -2620,13 +2980,20 @@ class SetValueAtIndicesRequest : public ::google::protobuf::Message /* @@protoc_
   static const ::google::protobuf::Descriptor* descriptor();
   static const SetValueAtIndicesRequest& default_instance();
 
+  enum ValuesCase {
+    kValuesInt = 3,
+    kValuesFloat = 4,
+    kValuesDouble = 5,
+    VALUES_NOT_SET = 0,
+  };
+
   static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
   static inline const SetValueAtIndicesRequest* internal_default_instance() {
     return reinterpret_cast<const SetValueAtIndicesRequest*>(
                &_SetValueAtIndicesRequest_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    21;
+    24;
 
   void Swap(SetValueAtIndicesRequest* other);
   friend void swap(SetValueAtIndicesRequest& a, SetValueAtIndicesRequest& b) {
@@ -2685,42 +3052,6 @@ class SetValueAtIndicesRequest : public ::google::protobuf::Message /* @@protoc_
   ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
       mutable_indices();
 
-  // repeated int32 values_int = 3 [packed = true];
-  int values_int_size() const;
-  void clear_values_int();
-  static const int kValuesIntFieldNumber = 3;
-  ::google::protobuf::int32 values_int(int index) const;
-  void set_values_int(int index, ::google::protobuf::int32 value);
-  void add_values_int(::google::protobuf::int32 value);
-  const ::google::protobuf::RepeatedField< ::google::protobuf::int32 >&
-      values_int() const;
-  ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
-      mutable_values_int();
-
-  // repeated float values_float = 4 [packed = true];
-  int values_float_size() const;
-  void clear_values_float();
-  static const int kValuesFloatFieldNumber = 4;
-  float values_float(int index) const;
-  void set_values_float(int index, float value);
-  void add_values_float(float value);
-  const ::google::protobuf::RepeatedField< float >&
-      values_float() const;
-  ::google::protobuf::RepeatedField< float >*
-      mutable_values_float();
-
-  // repeated double values_double = 5 [packed = true];
-  int values_double_size() const;
-  void clear_values_double();
-  static const int kValuesDoubleFieldNumber = 5;
-  double values_double(int index) const;
-  void set_values_double(int index, double value);
-  void add_values_double(double value);
-  const ::google::protobuf::RepeatedField< double >&
-      values_double() const;
-  ::google::protobuf::RepeatedField< double >*
-      mutable_values_double();
-
   // string name = 1;
   void clear_name();
   static const int kNameFieldNumber = 1;
@@ -2741,21 +3072,58 @@ class SetValueAtIndicesRequest : public ::google::protobuf::Message /* @@protoc_
   ::google::protobuf::int32 index_size() const;
   void set_index_size(::google::protobuf::int32 value);
 
+  // .bmi.IntArrayMessage values_int = 3;
+  bool has_values_int() const;
+  void clear_values_int();
+  static const int kValuesIntFieldNumber = 3;
+  const ::bmi::IntArrayMessage& values_int() const;
+  ::bmi::IntArrayMessage* release_values_int();
+  ::bmi::IntArrayMessage* mutable_values_int();
+  void set_allocated_values_int(::bmi::IntArrayMessage* values_int);
+
+  // .bmi.FloatArrayMessage values_float = 4;
+  bool has_values_float() const;
+  void clear_values_float();
+  static const int kValuesFloatFieldNumber = 4;
+  const ::bmi::FloatArrayMessage& values_float() const;
+  ::bmi::FloatArrayMessage* release_values_float();
+  ::bmi::FloatArrayMessage* mutable_values_float();
+  void set_allocated_values_float(::bmi::FloatArrayMessage* values_float);
+
+  // .bmi.DoubleArrayMessage values_double = 5;
+  bool has_values_double() const;
+  void clear_values_double();
+  static const int kValuesDoubleFieldNumber = 5;
+  const ::bmi::DoubleArrayMessage& values_double() const;
+  ::bmi::DoubleArrayMessage* release_values_double();
+  ::bmi::DoubleArrayMessage* mutable_values_double();
+  void set_allocated_values_double(::bmi::DoubleArrayMessage* values_double);
+
+  ValuesCase values_case() const;
   // @@protoc_insertion_point(class_scope:bmi.SetValueAtIndicesRequest)
  private:
+  void set_has_values_int();
+  void set_has_values_float();
+  void set_has_values_double();
+
+  inline bool has_values() const;
+  void clear_values();
+  inline void clear_has_values();
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::RepeatedField< ::google::protobuf::int32 > indices_;
   mutable int _indices_cached_byte_size_;
-  ::google::protobuf::RepeatedField< ::google::protobuf::int32 > values_int_;
-  mutable int _values_int_cached_byte_size_;
-  ::google::protobuf::RepeatedField< float > values_float_;
-  mutable int _values_float_cached_byte_size_;
-  ::google::protobuf::RepeatedField< double > values_double_;
-  mutable int _values_double_cached_byte_size_;
   ::google::protobuf::internal::ArenaStringPtr name_;
   ::google::protobuf::int32 index_size_;
+  union ValuesUnion {
+    ValuesUnion() {}
+    ::bmi::IntArrayMessage* values_int_;
+    ::bmi::FloatArrayMessage* values_float_;
+    ::bmi::DoubleArrayMessage* values_double_;
+  } values_;
   mutable int _cached_size_;
+  ::google::protobuf::uint32 _oneof_case_[1];
+
   friend struct ::protobuf_bmi_2eproto::TableStruct;
   friend void ::protobuf_bmi_2eproto::InitDefaultsSetValueAtIndicesRequestImpl();
 };
@@ -2796,7 +3164,7 @@ class GridRequest : public ::google::protobuf::Message /* @@protoc_insertion_poi
                &_GridRequest_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    22;
+    25;
 
   void Swap(GridRequest* other);
   friend void swap(GridRequest& a, GridRequest& b) {
@@ -2895,7 +3263,7 @@ class GetGridSizeResponse : public ::google::protobuf::Message /* @@protoc_inser
                &_GetGridSizeResponse_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    23;
+    26;
 
   void Swap(GetGridSizeResponse* other);
   friend void swap(GetGridSizeResponse& a, GetGridSizeResponse& b) {
@@ -2994,7 +3362,7 @@ class GetGridRankResponse : public ::google::protobuf::Message /* @@protoc_inser
                &_GetGridRankResponse_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    24;
+    27;
 
   void Swap(GetGridRankResponse* other);
   friend void swap(GetGridRankResponse& a, GetGridRankResponse& b) {
@@ -3093,7 +3461,7 @@ class GetGridTypeResponse : public ::google::protobuf::Message /* @@protoc_inser
                &_GetGridTypeResponse_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    25;
+    28;
 
   void Swap(GetGridTypeResponse* other);
   friend void swap(GetGridTypeResponse& a, GetGridTypeResponse& b) {
@@ -3200,7 +3568,7 @@ class GetGridShapeResponse : public ::google::protobuf::Message /* @@protoc_inse
                &_GetGridShapeResponse_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    26;
+    29;
 
   void Swap(GetGridShapeResponse* other);
   friend void swap(GetGridShapeResponse& a, GetGridShapeResponse& b) {
@@ -3306,7 +3674,7 @@ class GetGridSpacingResponse : public ::google::protobuf::Message /* @@protoc_in
                &_GetGridSpacingResponse_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    27;
+    30;
 
   void Swap(GetGridSpacingResponse* other);
   friend void swap(GetGridSpacingResponse& a, GetGridSpacingResponse& b) {
@@ -3412,7 +3780,7 @@ class GetGridOriginResponse : public ::google::protobuf::Message /* @@protoc_ins
                &_GetGridOriginResponse_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    28;
+    31;
 
   void Swap(GetGridOriginResponse* other);
   friend void swap(GetGridOriginResponse& a, GetGridOriginResponse& b) {
@@ -3518,7 +3886,7 @@ class GetGridPointsResponse : public ::google::protobuf::Message /* @@protoc_ins
                &_GetGridPointsResponse_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    29;
+    32;
 
   void Swap(GetGridPointsResponse* other);
   friend void swap(GetGridPointsResponse& a, GetGridPointsResponse& b) {
@@ -3624,7 +3992,7 @@ class GetCountResponse : public ::google::protobuf::Message /* @@protoc_insertio
                &_GetCountResponse_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    30;
+    33;
 
   void Swap(GetCountResponse* other);
   friend void swap(GetCountResponse& a, GetCountResponse& b) {
@@ -3723,7 +4091,7 @@ class GetGridConnectivityResponse : public ::google::protobuf::Message /* @@prot
                &_GetGridConnectivityResponse_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    31;
+    34;
 
   void Swap(GetGridConnectivityResponse* other);
   friend void swap(GetGridConnectivityResponse& a, GetGridConnectivityResponse& b) {
@@ -3829,7 +4197,7 @@ class GetGridOffsetResponse : public ::google::protobuf::Message /* @@protoc_ins
                &_GetGridOffsetResponse_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    32;
+    35;
 
   void Swap(GetGridOffsetResponse* other);
   friend void swap(GetGridOffsetResponse& a, GetGridOffsetResponse& b) {
@@ -4470,96 +4838,228 @@ inline void GetVarNBytesResponse::set_nbytes(::google::protobuf::int32 value) {
 
 // -------------------------------------------------------------------
 
-// GetValueResponse
+// IntArrayMessage
 
-// repeated int32 values_int = 1 [packed = true];
-inline int GetValueResponse::values_int_size() const {
-  return values_int_.size();
+// repeated int32 values = 1 [packed = true];
+inline int IntArrayMessage::values_size() const {
+  return values_.size();
 }
-inline void GetValueResponse::clear_values_int() {
-  values_int_.Clear();
+inline void IntArrayMessage::clear_values() {
+  values_.Clear();
 }
-inline ::google::protobuf::int32 GetValueResponse::values_int(int index) const {
-  // @@protoc_insertion_point(field_get:bmi.GetValueResponse.values_int)
-  return values_int_.Get(index);
+inline ::google::protobuf::int32 IntArrayMessage::values(int index) const {
+  // @@protoc_insertion_point(field_get:bmi.IntArrayMessage.values)
+  return values_.Get(index);
 }
-inline void GetValueResponse::set_values_int(int index, ::google::protobuf::int32 value) {
-  values_int_.Set(index, value);
-  // @@protoc_insertion_point(field_set:bmi.GetValueResponse.values_int)
+inline void IntArrayMessage::set_values(int index, ::google::protobuf::int32 value) {
+  values_.Set(index, value);
+  // @@protoc_insertion_point(field_set:bmi.IntArrayMessage.values)
 }
-inline void GetValueResponse::add_values_int(::google::protobuf::int32 value) {
-  values_int_.Add(value);
-  // @@protoc_insertion_point(field_add:bmi.GetValueResponse.values_int)
+inline void IntArrayMessage::add_values(::google::protobuf::int32 value) {
+  values_.Add(value);
+  // @@protoc_insertion_point(field_add:bmi.IntArrayMessage.values)
 }
 inline const ::google::protobuf::RepeatedField< ::google::protobuf::int32 >&
-GetValueResponse::values_int() const {
-  // @@protoc_insertion_point(field_list:bmi.GetValueResponse.values_int)
-  return values_int_;
+IntArrayMessage::values() const {
+  // @@protoc_insertion_point(field_list:bmi.IntArrayMessage.values)
+  return values_;
 }
 inline ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
-GetValueResponse::mutable_values_int() {
-  // @@protoc_insertion_point(field_mutable_list:bmi.GetValueResponse.values_int)
-  return &values_int_;
+IntArrayMessage::mutable_values() {
+  // @@protoc_insertion_point(field_mutable_list:bmi.IntArrayMessage.values)
+  return &values_;
 }
 
-// repeated float values_float = 2 [packed = true];
-inline int GetValueResponse::values_float_size() const {
-  return values_float_.size();
+// -------------------------------------------------------------------
+
+// FloatArrayMessage
+
+// repeated float values = 1 [packed = true];
+inline int FloatArrayMessage::values_size() const {
+  return values_.size();
 }
-inline void GetValueResponse::clear_values_float() {
-  values_float_.Clear();
+inline void FloatArrayMessage::clear_values() {
+  values_.Clear();
 }
-inline float GetValueResponse::values_float(int index) const {
-  // @@protoc_insertion_point(field_get:bmi.GetValueResponse.values_float)
-  return values_float_.Get(index);
+inline float FloatArrayMessage::values(int index) const {
+  // @@protoc_insertion_point(field_get:bmi.FloatArrayMessage.values)
+  return values_.Get(index);
 }
-inline void GetValueResponse::set_values_float(int index, float value) {
-  values_float_.Set(index, value);
-  // @@protoc_insertion_point(field_set:bmi.GetValueResponse.values_float)
+inline void FloatArrayMessage::set_values(int index, float value) {
+  values_.Set(index, value);
+  // @@protoc_insertion_point(field_set:bmi.FloatArrayMessage.values)
 }
-inline void GetValueResponse::add_values_float(float value) {
-  values_float_.Add(value);
-  // @@protoc_insertion_point(field_add:bmi.GetValueResponse.values_float)
+inline void FloatArrayMessage::add_values(float value) {
+  values_.Add(value);
+  // @@protoc_insertion_point(field_add:bmi.FloatArrayMessage.values)
 }
 inline const ::google::protobuf::RepeatedField< float >&
-GetValueResponse::values_float() const {
-  // @@protoc_insertion_point(field_list:bmi.GetValueResponse.values_float)
-  return values_float_;
+FloatArrayMessage::values() const {
+  // @@protoc_insertion_point(field_list:bmi.FloatArrayMessage.values)
+  return values_;
 }
 inline ::google::protobuf::RepeatedField< float >*
-GetValueResponse::mutable_values_float() {
-  // @@protoc_insertion_point(field_mutable_list:bmi.GetValueResponse.values_float)
-  return &values_float_;
+FloatArrayMessage::mutable_values() {
+  // @@protoc_insertion_point(field_mutable_list:bmi.FloatArrayMessage.values)
+  return &values_;
 }
 
-// repeated double values_double = 3 [packed = true];
-inline int GetValueResponse::values_double_size() const {
-  return values_double_.size();
+// -------------------------------------------------------------------
+
+// DoubleArrayMessage
+
+// repeated double values = 1 [packed = true];
+inline int DoubleArrayMessage::values_size() const {
+  return values_.size();
 }
-inline void GetValueResponse::clear_values_double() {
-  values_double_.Clear();
+inline void DoubleArrayMessage::clear_values() {
+  values_.Clear();
 }
-inline double GetValueResponse::values_double(int index) const {
-  // @@protoc_insertion_point(field_get:bmi.GetValueResponse.values_double)
-  return values_double_.Get(index);
+inline double DoubleArrayMessage::values(int index) const {
+  // @@protoc_insertion_point(field_get:bmi.DoubleArrayMessage.values)
+  return values_.Get(index);
 }
-inline void GetValueResponse::set_values_double(int index, double value) {
-  values_double_.Set(index, value);
-  // @@protoc_insertion_point(field_set:bmi.GetValueResponse.values_double)
+inline void DoubleArrayMessage::set_values(int index, double value) {
+  values_.Set(index, value);
+  // @@protoc_insertion_point(field_set:bmi.DoubleArrayMessage.values)
 }
-inline void GetValueResponse::add_values_double(double value) {
-  values_double_.Add(value);
-  // @@protoc_insertion_point(field_add:bmi.GetValueResponse.values_double)
+inline void DoubleArrayMessage::add_values(double value) {
+  values_.Add(value);
+  // @@protoc_insertion_point(field_add:bmi.DoubleArrayMessage.values)
 }
 inline const ::google::protobuf::RepeatedField< double >&
-GetValueResponse::values_double() const {
-  // @@protoc_insertion_point(field_list:bmi.GetValueResponse.values_double)
-  return values_double_;
+DoubleArrayMessage::values() const {
+  // @@protoc_insertion_point(field_list:bmi.DoubleArrayMessage.values)
+  return values_;
 }
 inline ::google::protobuf::RepeatedField< double >*
-GetValueResponse::mutable_values_double() {
-  // @@protoc_insertion_point(field_mutable_list:bmi.GetValueResponse.values_double)
-  return &values_double_;
+DoubleArrayMessage::mutable_values() {
+  // @@protoc_insertion_point(field_mutable_list:bmi.DoubleArrayMessage.values)
+  return &values_;
+}
+
+// -------------------------------------------------------------------
+
+// GetValueResponse
+
+// .bmi.IntArrayMessage values_int = 1;
+inline bool GetValueResponse::has_values_int() const {
+  return values_case() == kValuesInt;
+}
+inline void GetValueResponse::set_has_values_int() {
+  _oneof_case_[0] = kValuesInt;
+}
+inline void GetValueResponse::clear_values_int() {
+  if (has_values_int()) {
+    delete values_.values_int_;
+    clear_has_values();
+  }
+}
+inline ::bmi::IntArrayMessage* GetValueResponse::release_values_int() {
+  // @@protoc_insertion_point(field_release:bmi.GetValueResponse.values_int)
+  if (has_values_int()) {
+    clear_has_values();
+      ::bmi::IntArrayMessage* temp = values_.values_int_;
+    values_.values_int_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline const ::bmi::IntArrayMessage& GetValueResponse::values_int() const {
+  // @@protoc_insertion_point(field_get:bmi.GetValueResponse.values_int)
+  return has_values_int()
+      ? *values_.values_int_
+      : *reinterpret_cast< ::bmi::IntArrayMessage*>(&::bmi::_IntArrayMessage_default_instance_);
+}
+inline ::bmi::IntArrayMessage* GetValueResponse::mutable_values_int() {
+  if (!has_values_int()) {
+    clear_values();
+    set_has_values_int();
+    values_.values_int_ = new ::bmi::IntArrayMessage;
+  }
+  // @@protoc_insertion_point(field_mutable:bmi.GetValueResponse.values_int)
+  return values_.values_int_;
+}
+
+// .bmi.FloatArrayMessage values_float = 2;
+inline bool GetValueResponse::has_values_float() const {
+  return values_case() == kValuesFloat;
+}
+inline void GetValueResponse::set_has_values_float() {
+  _oneof_case_[0] = kValuesFloat;
+}
+inline void GetValueResponse::clear_values_float() {
+  if (has_values_float()) {
+    delete values_.values_float_;
+    clear_has_values();
+  }
+}
+inline ::bmi::FloatArrayMessage* GetValueResponse::release_values_float() {
+  // @@protoc_insertion_point(field_release:bmi.GetValueResponse.values_float)
+  if (has_values_float()) {
+    clear_has_values();
+      ::bmi::FloatArrayMessage* temp = values_.values_float_;
+    values_.values_float_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline const ::bmi::FloatArrayMessage& GetValueResponse::values_float() const {
+  // @@protoc_insertion_point(field_get:bmi.GetValueResponse.values_float)
+  return has_values_float()
+      ? *values_.values_float_
+      : *reinterpret_cast< ::bmi::FloatArrayMessage*>(&::bmi::_FloatArrayMessage_default_instance_);
+}
+inline ::bmi::FloatArrayMessage* GetValueResponse::mutable_values_float() {
+  if (!has_values_float()) {
+    clear_values();
+    set_has_values_float();
+    values_.values_float_ = new ::bmi::FloatArrayMessage;
+  }
+  // @@protoc_insertion_point(field_mutable:bmi.GetValueResponse.values_float)
+  return values_.values_float_;
+}
+
+// .bmi.DoubleArrayMessage values_double = 3;
+inline bool GetValueResponse::has_values_double() const {
+  return values_case() == kValuesDouble;
+}
+inline void GetValueResponse::set_has_values_double() {
+  _oneof_case_[0] = kValuesDouble;
+}
+inline void GetValueResponse::clear_values_double() {
+  if (has_values_double()) {
+    delete values_.values_double_;
+    clear_has_values();
+  }
+}
+inline ::bmi::DoubleArrayMessage* GetValueResponse::release_values_double() {
+  // @@protoc_insertion_point(field_release:bmi.GetValueResponse.values_double)
+  if (has_values_double()) {
+    clear_has_values();
+      ::bmi::DoubleArrayMessage* temp = values_.values_double_;
+    values_.values_double_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline const ::bmi::DoubleArrayMessage& GetValueResponse::values_double() const {
+  // @@protoc_insertion_point(field_get:bmi.GetValueResponse.values_double)
+  return has_values_double()
+      ? *values_.values_double_
+      : *reinterpret_cast< ::bmi::DoubleArrayMessage*>(&::bmi::_DoubleArrayMessage_default_instance_);
+}
+inline ::bmi::DoubleArrayMessage* GetValueResponse::mutable_values_double() {
+  if (!has_values_double()) {
+    clear_values();
+    set_has_values_double();
+    values_.values_double_ = new ::bmi::DoubleArrayMessage;
+  }
+  // @@protoc_insertion_point(field_mutable:bmi.GetValueResponse.values_double)
+  return values_.values_double_;
 }
 
 // repeated int32 shape = 4 [packed = true];
@@ -4592,6 +5092,15 @@ GetValueResponse::mutable_shape() {
   return &shape_;
 }
 
+inline bool GetValueResponse::has_values() const {
+  return values_case() != VALUES_NOT_SET;
+}
+inline void GetValueResponse::clear_has_values() {
+  _oneof_case_[0] = VALUES_NOT_SET;
+}
+inline GetValueResponse::ValuesCase GetValueResponse::values_case() const {
+  return GetValueResponse::ValuesCase(_oneof_case_[0]);
+}
 // -------------------------------------------------------------------
 
 // GetValueAtIndicesRequest
@@ -4697,94 +5206,124 @@ inline void GetValueAtIndicesRequest::set_index_size(::google::protobuf::int32 v
 
 // GetValueAtIndicesResponse
 
-// repeated int32 values_int = 1 [packed = true];
-inline int GetValueAtIndicesResponse::values_int_size() const {
-  return values_int_.size();
+// .bmi.IntArrayMessage values_int = 1;
+inline bool GetValueAtIndicesResponse::has_values_int() const {
+  return values_case() == kValuesInt;
+}
+inline void GetValueAtIndicesResponse::set_has_values_int() {
+  _oneof_case_[0] = kValuesInt;
 }
 inline void GetValueAtIndicesResponse::clear_values_int() {
-  values_int_.Clear();
+  if (has_values_int()) {
+    delete values_.values_int_;
+    clear_has_values();
+  }
 }
-inline ::google::protobuf::int32 GetValueAtIndicesResponse::values_int(int index) const {
+inline ::bmi::IntArrayMessage* GetValueAtIndicesResponse::release_values_int() {
+  // @@protoc_insertion_point(field_release:bmi.GetValueAtIndicesResponse.values_int)
+  if (has_values_int()) {
+    clear_has_values();
+      ::bmi::IntArrayMessage* temp = values_.values_int_;
+    values_.values_int_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline const ::bmi::IntArrayMessage& GetValueAtIndicesResponse::values_int() const {
   // @@protoc_insertion_point(field_get:bmi.GetValueAtIndicesResponse.values_int)
-  return values_int_.Get(index);
+  return has_values_int()
+      ? *values_.values_int_
+      : *reinterpret_cast< ::bmi::IntArrayMessage*>(&::bmi::_IntArrayMessage_default_instance_);
 }
-inline void GetValueAtIndicesResponse::set_values_int(int index, ::google::protobuf::int32 value) {
-  values_int_.Set(index, value);
-  // @@protoc_insertion_point(field_set:bmi.GetValueAtIndicesResponse.values_int)
-}
-inline void GetValueAtIndicesResponse::add_values_int(::google::protobuf::int32 value) {
-  values_int_.Add(value);
-  // @@protoc_insertion_point(field_add:bmi.GetValueAtIndicesResponse.values_int)
-}
-inline const ::google::protobuf::RepeatedField< ::google::protobuf::int32 >&
-GetValueAtIndicesResponse::values_int() const {
-  // @@protoc_insertion_point(field_list:bmi.GetValueAtIndicesResponse.values_int)
-  return values_int_;
-}
-inline ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
-GetValueAtIndicesResponse::mutable_values_int() {
-  // @@protoc_insertion_point(field_mutable_list:bmi.GetValueAtIndicesResponse.values_int)
-  return &values_int_;
+inline ::bmi::IntArrayMessage* GetValueAtIndicesResponse::mutable_values_int() {
+  if (!has_values_int()) {
+    clear_values();
+    set_has_values_int();
+    values_.values_int_ = new ::bmi::IntArrayMessage;
+  }
+  // @@protoc_insertion_point(field_mutable:bmi.GetValueAtIndicesResponse.values_int)
+  return values_.values_int_;
 }
 
-// repeated float values_float = 2 [packed = true];
-inline int GetValueAtIndicesResponse::values_float_size() const {
-  return values_float_.size();
+// .bmi.FloatArrayMessage values_float = 2;
+inline bool GetValueAtIndicesResponse::has_values_float() const {
+  return values_case() == kValuesFloat;
+}
+inline void GetValueAtIndicesResponse::set_has_values_float() {
+  _oneof_case_[0] = kValuesFloat;
 }
 inline void GetValueAtIndicesResponse::clear_values_float() {
-  values_float_.Clear();
+  if (has_values_float()) {
+    delete values_.values_float_;
+    clear_has_values();
+  }
 }
-inline float GetValueAtIndicesResponse::values_float(int index) const {
+inline ::bmi::FloatArrayMessage* GetValueAtIndicesResponse::release_values_float() {
+  // @@protoc_insertion_point(field_release:bmi.GetValueAtIndicesResponse.values_float)
+  if (has_values_float()) {
+    clear_has_values();
+      ::bmi::FloatArrayMessage* temp = values_.values_float_;
+    values_.values_float_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline const ::bmi::FloatArrayMessage& GetValueAtIndicesResponse::values_float() const {
   // @@protoc_insertion_point(field_get:bmi.GetValueAtIndicesResponse.values_float)
-  return values_float_.Get(index);
+  return has_values_float()
+      ? *values_.values_float_
+      : *reinterpret_cast< ::bmi::FloatArrayMessage*>(&::bmi::_FloatArrayMessage_default_instance_);
 }
-inline void GetValueAtIndicesResponse::set_values_float(int index, float value) {
-  values_float_.Set(index, value);
-  // @@protoc_insertion_point(field_set:bmi.GetValueAtIndicesResponse.values_float)
-}
-inline void GetValueAtIndicesResponse::add_values_float(float value) {
-  values_float_.Add(value);
-  // @@protoc_insertion_point(field_add:bmi.GetValueAtIndicesResponse.values_float)
-}
-inline const ::google::protobuf::RepeatedField< float >&
-GetValueAtIndicesResponse::values_float() const {
-  // @@protoc_insertion_point(field_list:bmi.GetValueAtIndicesResponse.values_float)
-  return values_float_;
-}
-inline ::google::protobuf::RepeatedField< float >*
-GetValueAtIndicesResponse::mutable_values_float() {
-  // @@protoc_insertion_point(field_mutable_list:bmi.GetValueAtIndicesResponse.values_float)
-  return &values_float_;
+inline ::bmi::FloatArrayMessage* GetValueAtIndicesResponse::mutable_values_float() {
+  if (!has_values_float()) {
+    clear_values();
+    set_has_values_float();
+    values_.values_float_ = new ::bmi::FloatArrayMessage;
+  }
+  // @@protoc_insertion_point(field_mutable:bmi.GetValueAtIndicesResponse.values_float)
+  return values_.values_float_;
 }
 
-// repeated double values_double = 3 [packed = true];
-inline int GetValueAtIndicesResponse::values_double_size() const {
-  return values_double_.size();
+// .bmi.DoubleArrayMessage values_double = 3;
+inline bool GetValueAtIndicesResponse::has_values_double() const {
+  return values_case() == kValuesDouble;
+}
+inline void GetValueAtIndicesResponse::set_has_values_double() {
+  _oneof_case_[0] = kValuesDouble;
 }
 inline void GetValueAtIndicesResponse::clear_values_double() {
-  values_double_.Clear();
+  if (has_values_double()) {
+    delete values_.values_double_;
+    clear_has_values();
+  }
 }
-inline double GetValueAtIndicesResponse::values_double(int index) const {
+inline ::bmi::DoubleArrayMessage* GetValueAtIndicesResponse::release_values_double() {
+  // @@protoc_insertion_point(field_release:bmi.GetValueAtIndicesResponse.values_double)
+  if (has_values_double()) {
+    clear_has_values();
+      ::bmi::DoubleArrayMessage* temp = values_.values_double_;
+    values_.values_double_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline const ::bmi::DoubleArrayMessage& GetValueAtIndicesResponse::values_double() const {
   // @@protoc_insertion_point(field_get:bmi.GetValueAtIndicesResponse.values_double)
-  return values_double_.Get(index);
+  return has_values_double()
+      ? *values_.values_double_
+      : *reinterpret_cast< ::bmi::DoubleArrayMessage*>(&::bmi::_DoubleArrayMessage_default_instance_);
 }
-inline void GetValueAtIndicesResponse::set_values_double(int index, double value) {
-  values_double_.Set(index, value);
-  // @@protoc_insertion_point(field_set:bmi.GetValueAtIndicesResponse.values_double)
-}
-inline void GetValueAtIndicesResponse::add_values_double(double value) {
-  values_double_.Add(value);
-  // @@protoc_insertion_point(field_add:bmi.GetValueAtIndicesResponse.values_double)
-}
-inline const ::google::protobuf::RepeatedField< double >&
-GetValueAtIndicesResponse::values_double() const {
-  // @@protoc_insertion_point(field_list:bmi.GetValueAtIndicesResponse.values_double)
-  return values_double_;
-}
-inline ::google::protobuf::RepeatedField< double >*
-GetValueAtIndicesResponse::mutable_values_double() {
-  // @@protoc_insertion_point(field_mutable_list:bmi.GetValueAtIndicesResponse.values_double)
-  return &values_double_;
+inline ::bmi::DoubleArrayMessage* GetValueAtIndicesResponse::mutable_values_double() {
+  if (!has_values_double()) {
+    clear_values();
+    set_has_values_double();
+    values_.values_double_ = new ::bmi::DoubleArrayMessage;
+  }
+  // @@protoc_insertion_point(field_mutable:bmi.GetValueAtIndicesResponse.values_double)
+  return values_.values_double_;
 }
 
 // repeated int32 shape = 4 [packed = true];
@@ -4817,6 +5356,15 @@ GetValueAtIndicesResponse::mutable_shape() {
   return &shape_;
 }
 
+inline bool GetValueAtIndicesResponse::has_values() const {
+  return values_case() != VALUES_NOT_SET;
+}
+inline void GetValueAtIndicesResponse::clear_has_values() {
+  _oneof_case_[0] = VALUES_NOT_SET;
+}
+inline GetValueAtIndicesResponse::ValuesCase GetValueAtIndicesResponse::values_case() const {
+  return GetValueAtIndicesResponse::ValuesCase(_oneof_case_[0]);
+}
 // -------------------------------------------------------------------
 
 // SetValueRequest
@@ -4874,94 +5422,124 @@ inline void SetValueRequest::set_allocated_name(::std::string* name) {
   // @@protoc_insertion_point(field_set_allocated:bmi.SetValueRequest.name)
 }
 
-// repeated int32 values_int = 2 [packed = true];
-inline int SetValueRequest::values_int_size() const {
-  return values_int_.size();
+// .bmi.IntArrayMessage values_int = 2;
+inline bool SetValueRequest::has_values_int() const {
+  return values_case() == kValuesInt;
+}
+inline void SetValueRequest::set_has_values_int() {
+  _oneof_case_[0] = kValuesInt;
 }
 inline void SetValueRequest::clear_values_int() {
-  values_int_.Clear();
+  if (has_values_int()) {
+    delete values_.values_int_;
+    clear_has_values();
+  }
 }
-inline ::google::protobuf::int32 SetValueRequest::values_int(int index) const {
+inline ::bmi::IntArrayMessage* SetValueRequest::release_values_int() {
+  // @@protoc_insertion_point(field_release:bmi.SetValueRequest.values_int)
+  if (has_values_int()) {
+    clear_has_values();
+      ::bmi::IntArrayMessage* temp = values_.values_int_;
+    values_.values_int_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline const ::bmi::IntArrayMessage& SetValueRequest::values_int() const {
   // @@protoc_insertion_point(field_get:bmi.SetValueRequest.values_int)
-  return values_int_.Get(index);
+  return has_values_int()
+      ? *values_.values_int_
+      : *reinterpret_cast< ::bmi::IntArrayMessage*>(&::bmi::_IntArrayMessage_default_instance_);
 }
-inline void SetValueRequest::set_values_int(int index, ::google::protobuf::int32 value) {
-  values_int_.Set(index, value);
-  // @@protoc_insertion_point(field_set:bmi.SetValueRequest.values_int)
-}
-inline void SetValueRequest::add_values_int(::google::protobuf::int32 value) {
-  values_int_.Add(value);
-  // @@protoc_insertion_point(field_add:bmi.SetValueRequest.values_int)
-}
-inline const ::google::protobuf::RepeatedField< ::google::protobuf::int32 >&
-SetValueRequest::values_int() const {
-  // @@protoc_insertion_point(field_list:bmi.SetValueRequest.values_int)
-  return values_int_;
-}
-inline ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
-SetValueRequest::mutable_values_int() {
-  // @@protoc_insertion_point(field_mutable_list:bmi.SetValueRequest.values_int)
-  return &values_int_;
+inline ::bmi::IntArrayMessage* SetValueRequest::mutable_values_int() {
+  if (!has_values_int()) {
+    clear_values();
+    set_has_values_int();
+    values_.values_int_ = new ::bmi::IntArrayMessage;
+  }
+  // @@protoc_insertion_point(field_mutable:bmi.SetValueRequest.values_int)
+  return values_.values_int_;
 }
 
-// repeated float values_float = 3 [packed = true];
-inline int SetValueRequest::values_float_size() const {
-  return values_float_.size();
+// .bmi.FloatArrayMessage values_float = 3;
+inline bool SetValueRequest::has_values_float() const {
+  return values_case() == kValuesFloat;
+}
+inline void SetValueRequest::set_has_values_float() {
+  _oneof_case_[0] = kValuesFloat;
 }
 inline void SetValueRequest::clear_values_float() {
-  values_float_.Clear();
+  if (has_values_float()) {
+    delete values_.values_float_;
+    clear_has_values();
+  }
 }
-inline float SetValueRequest::values_float(int index) const {
+inline ::bmi::FloatArrayMessage* SetValueRequest::release_values_float() {
+  // @@protoc_insertion_point(field_release:bmi.SetValueRequest.values_float)
+  if (has_values_float()) {
+    clear_has_values();
+      ::bmi::FloatArrayMessage* temp = values_.values_float_;
+    values_.values_float_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline const ::bmi::FloatArrayMessage& SetValueRequest::values_float() const {
   // @@protoc_insertion_point(field_get:bmi.SetValueRequest.values_float)
-  return values_float_.Get(index);
+  return has_values_float()
+      ? *values_.values_float_
+      : *reinterpret_cast< ::bmi::FloatArrayMessage*>(&::bmi::_FloatArrayMessage_default_instance_);
 }
-inline void SetValueRequest::set_values_float(int index, float value) {
-  values_float_.Set(index, value);
-  // @@protoc_insertion_point(field_set:bmi.SetValueRequest.values_float)
-}
-inline void SetValueRequest::add_values_float(float value) {
-  values_float_.Add(value);
-  // @@protoc_insertion_point(field_add:bmi.SetValueRequest.values_float)
-}
-inline const ::google::protobuf::RepeatedField< float >&
-SetValueRequest::values_float() const {
-  // @@protoc_insertion_point(field_list:bmi.SetValueRequest.values_float)
-  return values_float_;
-}
-inline ::google::protobuf::RepeatedField< float >*
-SetValueRequest::mutable_values_float() {
-  // @@protoc_insertion_point(field_mutable_list:bmi.SetValueRequest.values_float)
-  return &values_float_;
+inline ::bmi::FloatArrayMessage* SetValueRequest::mutable_values_float() {
+  if (!has_values_float()) {
+    clear_values();
+    set_has_values_float();
+    values_.values_float_ = new ::bmi::FloatArrayMessage;
+  }
+  // @@protoc_insertion_point(field_mutable:bmi.SetValueRequest.values_float)
+  return values_.values_float_;
 }
 
-// repeated double values_double = 4 [packed = true];
-inline int SetValueRequest::values_double_size() const {
-  return values_double_.size();
+// .bmi.DoubleArrayMessage values_double = 4;
+inline bool SetValueRequest::has_values_double() const {
+  return values_case() == kValuesDouble;
+}
+inline void SetValueRequest::set_has_values_double() {
+  _oneof_case_[0] = kValuesDouble;
 }
 inline void SetValueRequest::clear_values_double() {
-  values_double_.Clear();
+  if (has_values_double()) {
+    delete values_.values_double_;
+    clear_has_values();
+  }
 }
-inline double SetValueRequest::values_double(int index) const {
+inline ::bmi::DoubleArrayMessage* SetValueRequest::release_values_double() {
+  // @@protoc_insertion_point(field_release:bmi.SetValueRequest.values_double)
+  if (has_values_double()) {
+    clear_has_values();
+      ::bmi::DoubleArrayMessage* temp = values_.values_double_;
+    values_.values_double_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline const ::bmi::DoubleArrayMessage& SetValueRequest::values_double() const {
   // @@protoc_insertion_point(field_get:bmi.SetValueRequest.values_double)
-  return values_double_.Get(index);
+  return has_values_double()
+      ? *values_.values_double_
+      : *reinterpret_cast< ::bmi::DoubleArrayMessage*>(&::bmi::_DoubleArrayMessage_default_instance_);
 }
-inline void SetValueRequest::set_values_double(int index, double value) {
-  values_double_.Set(index, value);
-  // @@protoc_insertion_point(field_set:bmi.SetValueRequest.values_double)
-}
-inline void SetValueRequest::add_values_double(double value) {
-  values_double_.Add(value);
-  // @@protoc_insertion_point(field_add:bmi.SetValueRequest.values_double)
-}
-inline const ::google::protobuf::RepeatedField< double >&
-SetValueRequest::values_double() const {
-  // @@protoc_insertion_point(field_list:bmi.SetValueRequest.values_double)
-  return values_double_;
-}
-inline ::google::protobuf::RepeatedField< double >*
-SetValueRequest::mutable_values_double() {
-  // @@protoc_insertion_point(field_mutable_list:bmi.SetValueRequest.values_double)
-  return &values_double_;
+inline ::bmi::DoubleArrayMessage* SetValueRequest::mutable_values_double() {
+  if (!has_values_double()) {
+    clear_values();
+    set_has_values_double();
+    values_.values_double_ = new ::bmi::DoubleArrayMessage;
+  }
+  // @@protoc_insertion_point(field_mutable:bmi.SetValueRequest.values_double)
+  return values_.values_double_;
 }
 
 // repeated int32 shape = 5 [packed = true];
@@ -4994,6 +5572,15 @@ SetValueRequest::mutable_shape() {
   return &shape_;
 }
 
+inline bool SetValueRequest::has_values() const {
+  return values_case() != VALUES_NOT_SET;
+}
+inline void SetValueRequest::clear_has_values() {
+  _oneof_case_[0] = VALUES_NOT_SET;
+}
+inline SetValueRequest::ValuesCase SetValueRequest::values_case() const {
+  return SetValueRequest::ValuesCase(_oneof_case_[0]);
+}
 // -------------------------------------------------------------------
 
 // SetValuePtrRequest
@@ -5152,94 +5739,124 @@ SetValueAtIndicesRequest::mutable_indices() {
   return &indices_;
 }
 
-// repeated int32 values_int = 3 [packed = true];
-inline int SetValueAtIndicesRequest::values_int_size() const {
-  return values_int_.size();
+// .bmi.IntArrayMessage values_int = 3;
+inline bool SetValueAtIndicesRequest::has_values_int() const {
+  return values_case() == kValuesInt;
+}
+inline void SetValueAtIndicesRequest::set_has_values_int() {
+  _oneof_case_[0] = kValuesInt;
 }
 inline void SetValueAtIndicesRequest::clear_values_int() {
-  values_int_.Clear();
+  if (has_values_int()) {
+    delete values_.values_int_;
+    clear_has_values();
+  }
 }
-inline ::google::protobuf::int32 SetValueAtIndicesRequest::values_int(int index) const {
+inline ::bmi::IntArrayMessage* SetValueAtIndicesRequest::release_values_int() {
+  // @@protoc_insertion_point(field_release:bmi.SetValueAtIndicesRequest.values_int)
+  if (has_values_int()) {
+    clear_has_values();
+      ::bmi::IntArrayMessage* temp = values_.values_int_;
+    values_.values_int_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline const ::bmi::IntArrayMessage& SetValueAtIndicesRequest::values_int() const {
   // @@protoc_insertion_point(field_get:bmi.SetValueAtIndicesRequest.values_int)
-  return values_int_.Get(index);
+  return has_values_int()
+      ? *values_.values_int_
+      : *reinterpret_cast< ::bmi::IntArrayMessage*>(&::bmi::_IntArrayMessage_default_instance_);
 }
-inline void SetValueAtIndicesRequest::set_values_int(int index, ::google::protobuf::int32 value) {
-  values_int_.Set(index, value);
-  // @@protoc_insertion_point(field_set:bmi.SetValueAtIndicesRequest.values_int)
-}
-inline void SetValueAtIndicesRequest::add_values_int(::google::protobuf::int32 value) {
-  values_int_.Add(value);
-  // @@protoc_insertion_point(field_add:bmi.SetValueAtIndicesRequest.values_int)
-}
-inline const ::google::protobuf::RepeatedField< ::google::protobuf::int32 >&
-SetValueAtIndicesRequest::values_int() const {
-  // @@protoc_insertion_point(field_list:bmi.SetValueAtIndicesRequest.values_int)
-  return values_int_;
-}
-inline ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
-SetValueAtIndicesRequest::mutable_values_int() {
-  // @@protoc_insertion_point(field_mutable_list:bmi.SetValueAtIndicesRequest.values_int)
-  return &values_int_;
+inline ::bmi::IntArrayMessage* SetValueAtIndicesRequest::mutable_values_int() {
+  if (!has_values_int()) {
+    clear_values();
+    set_has_values_int();
+    values_.values_int_ = new ::bmi::IntArrayMessage;
+  }
+  // @@protoc_insertion_point(field_mutable:bmi.SetValueAtIndicesRequest.values_int)
+  return values_.values_int_;
 }
 
-// repeated float values_float = 4 [packed = true];
-inline int SetValueAtIndicesRequest::values_float_size() const {
-  return values_float_.size();
+// .bmi.FloatArrayMessage values_float = 4;
+inline bool SetValueAtIndicesRequest::has_values_float() const {
+  return values_case() == kValuesFloat;
+}
+inline void SetValueAtIndicesRequest::set_has_values_float() {
+  _oneof_case_[0] = kValuesFloat;
 }
 inline void SetValueAtIndicesRequest::clear_values_float() {
-  values_float_.Clear();
+  if (has_values_float()) {
+    delete values_.values_float_;
+    clear_has_values();
+  }
 }
-inline float SetValueAtIndicesRequest::values_float(int index) const {
+inline ::bmi::FloatArrayMessage* SetValueAtIndicesRequest::release_values_float() {
+  // @@protoc_insertion_point(field_release:bmi.SetValueAtIndicesRequest.values_float)
+  if (has_values_float()) {
+    clear_has_values();
+      ::bmi::FloatArrayMessage* temp = values_.values_float_;
+    values_.values_float_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline const ::bmi::FloatArrayMessage& SetValueAtIndicesRequest::values_float() const {
   // @@protoc_insertion_point(field_get:bmi.SetValueAtIndicesRequest.values_float)
-  return values_float_.Get(index);
+  return has_values_float()
+      ? *values_.values_float_
+      : *reinterpret_cast< ::bmi::FloatArrayMessage*>(&::bmi::_FloatArrayMessage_default_instance_);
 }
-inline void SetValueAtIndicesRequest::set_values_float(int index, float value) {
-  values_float_.Set(index, value);
-  // @@protoc_insertion_point(field_set:bmi.SetValueAtIndicesRequest.values_float)
-}
-inline void SetValueAtIndicesRequest::add_values_float(float value) {
-  values_float_.Add(value);
-  // @@protoc_insertion_point(field_add:bmi.SetValueAtIndicesRequest.values_float)
-}
-inline const ::google::protobuf::RepeatedField< float >&
-SetValueAtIndicesRequest::values_float() const {
-  // @@protoc_insertion_point(field_list:bmi.SetValueAtIndicesRequest.values_float)
-  return values_float_;
-}
-inline ::google::protobuf::RepeatedField< float >*
-SetValueAtIndicesRequest::mutable_values_float() {
-  // @@protoc_insertion_point(field_mutable_list:bmi.SetValueAtIndicesRequest.values_float)
-  return &values_float_;
+inline ::bmi::FloatArrayMessage* SetValueAtIndicesRequest::mutable_values_float() {
+  if (!has_values_float()) {
+    clear_values();
+    set_has_values_float();
+    values_.values_float_ = new ::bmi::FloatArrayMessage;
+  }
+  // @@protoc_insertion_point(field_mutable:bmi.SetValueAtIndicesRequest.values_float)
+  return values_.values_float_;
 }
 
-// repeated double values_double = 5 [packed = true];
-inline int SetValueAtIndicesRequest::values_double_size() const {
-  return values_double_.size();
+// .bmi.DoubleArrayMessage values_double = 5;
+inline bool SetValueAtIndicesRequest::has_values_double() const {
+  return values_case() == kValuesDouble;
+}
+inline void SetValueAtIndicesRequest::set_has_values_double() {
+  _oneof_case_[0] = kValuesDouble;
 }
 inline void SetValueAtIndicesRequest::clear_values_double() {
-  values_double_.Clear();
+  if (has_values_double()) {
+    delete values_.values_double_;
+    clear_has_values();
+  }
 }
-inline double SetValueAtIndicesRequest::values_double(int index) const {
+inline ::bmi::DoubleArrayMessage* SetValueAtIndicesRequest::release_values_double() {
+  // @@protoc_insertion_point(field_release:bmi.SetValueAtIndicesRequest.values_double)
+  if (has_values_double()) {
+    clear_has_values();
+      ::bmi::DoubleArrayMessage* temp = values_.values_double_;
+    values_.values_double_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline const ::bmi::DoubleArrayMessage& SetValueAtIndicesRequest::values_double() const {
   // @@protoc_insertion_point(field_get:bmi.SetValueAtIndicesRequest.values_double)
-  return values_double_.Get(index);
+  return has_values_double()
+      ? *values_.values_double_
+      : *reinterpret_cast< ::bmi::DoubleArrayMessage*>(&::bmi::_DoubleArrayMessage_default_instance_);
 }
-inline void SetValueAtIndicesRequest::set_values_double(int index, double value) {
-  values_double_.Set(index, value);
-  // @@protoc_insertion_point(field_set:bmi.SetValueAtIndicesRequest.values_double)
-}
-inline void SetValueAtIndicesRequest::add_values_double(double value) {
-  values_double_.Add(value);
-  // @@protoc_insertion_point(field_add:bmi.SetValueAtIndicesRequest.values_double)
-}
-inline const ::google::protobuf::RepeatedField< double >&
-SetValueAtIndicesRequest::values_double() const {
-  // @@protoc_insertion_point(field_list:bmi.SetValueAtIndicesRequest.values_double)
-  return values_double_;
-}
-inline ::google::protobuf::RepeatedField< double >*
-SetValueAtIndicesRequest::mutable_values_double() {
-  // @@protoc_insertion_point(field_mutable_list:bmi.SetValueAtIndicesRequest.values_double)
-  return &values_double_;
+inline ::bmi::DoubleArrayMessage* SetValueAtIndicesRequest::mutable_values_double() {
+  if (!has_values_double()) {
+    clear_values();
+    set_has_values_double();
+    values_.values_double_ = new ::bmi::DoubleArrayMessage;
+  }
+  // @@protoc_insertion_point(field_mutable:bmi.SetValueAtIndicesRequest.values_double)
+  return values_.values_double_;
 }
 
 // int32 index_size = 6;
@@ -5256,6 +5873,15 @@ inline void SetValueAtIndicesRequest::set_index_size(::google::protobuf::int32 v
   // @@protoc_insertion_point(field_set:bmi.SetValueAtIndicesRequest.index_size)
 }
 
+inline bool SetValueAtIndicesRequest::has_values() const {
+  return values_case() != VALUES_NOT_SET;
+}
+inline void SetValueAtIndicesRequest::clear_has_values() {
+  _oneof_case_[0] = VALUES_NOT_SET;
+}
+inline SetValueAtIndicesRequest::ValuesCase SetValueAtIndicesRequest::values_case() const {
+  return SetValueAtIndicesRequest::ValuesCase(_oneof_case_[0]);
+}
 // -------------------------------------------------------------------
 
 // GridRequest
@@ -5592,6 +6218,12 @@ GetGridOffsetResponse::mutable_offsets() {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

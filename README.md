@@ -38,8 +38,8 @@ Rscript -e "devtools::document(roclets=c('rd', 'collate', 'namespace'))"
 
 ```bash
 cd src
-protoc -I ../inst/proto --grpc_out=. --plugin=protoc-gen-grpc=`which grpc_cpp_plugin` .../inst/proto/bmi.proto
-protoc -I ../inst/proto --cpp_out=. .../inst/proto/bmi.proto
+protoc -I ../inst/proto --grpc_out=. --plugin=protoc-gen-grpc=`which grpc_cpp_plugin` ../inst/proto/bmi.proto
+protoc -I ../inst/proto --cpp_out=. ../inst/proto/bmi.proto
 cd -
 ```
 
