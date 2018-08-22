@@ -53,7 +53,7 @@ run <- function() {
     model <- get(class)$new()
 
     port = Sys.getenv('BMI_PORT', '55555')
-   runAsyncMultiServer(model, port);
+    runAsyncMultiServer(model, port=port);
 }
 
 #' Start a gRPC server wrapping a mocked bmi model

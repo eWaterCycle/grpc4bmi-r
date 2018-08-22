@@ -26,6 +26,27 @@ export BMI_PORT=<port on which to run grpc server, default is 55555>
 Rscript -e 'grpc4bmi::run()'
 ```
 
+## Docker container
+
+To install grpc is a bit of a hassle so a Docker image is provided called [ewatercycle/grpc4bmi-r](https://hub.docker.com/r/ewatercycle/grpc4bmi-r/) which contains R and grpc installation.
+
+To create a Docker image of a R based hydrology model use this image as a start.
+
+So for example for https://github.com/ClaudiaBrauer/WALRUS
+
+```Dockerfile
+FROM ewatercycle/grpc4bmi-r
+
+RUN installGithub.r ClaudiaBrauer/WALRUS
+
+RUN mkdir /opt/walrus-bmi
+
+COPY walrus-bmi.r /opt/walrus-bmi/walrus-bmi.r
+
+ENV BMI_MODULE=/opt/walrus-bmi/walrus-bmi.r
+ENV BMI_CLASS=WalrusBmi
+```
+
 # Release
 
 ## Generate man pages
