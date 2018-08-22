@@ -47,6 +47,17 @@ ENV BMI_MODULE=/opt/walrus-bmi/walrus-bmi.r
 ENV BMI_CLASS=WalrusBmi
 ```
 
+To run server use
+```bash
+docker run -d -v $PWD:/data -p 55555:55555 <docker image from ewatercycle/grpc4bmi-r>
+```
+The config file for the bmi initialize function should be put in current working directory and the initialize function should be called with `/data/<config filename`.
+
+To run server in debug mode use
+```bash
+docker run -d -v $PWD:/data -p 55555:55555 -e GRPC_TRACE=api -e GRPC_VERBOSITY=DEBUG <docker image from ewatercycle/grpc4bmi-r>
+```
+
 # Release
 
 ## Generate man pages
