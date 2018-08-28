@@ -4,7 +4,3 @@ addons:
   apt:
     packages:
       - libxml2-dev
-      - protobuf-compiler 
-      - libprotobuf-dev
-      - libprotoc-dev
-      - libgrpc++-dev

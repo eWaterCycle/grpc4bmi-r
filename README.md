@@ -1,17 +1,13 @@
-Wrap a model written in R which implements the basic model interface (bmi) in a gRPC server.
+Contains abstract super class which implements the basic model interface (bmi) in R.
 
 See https://github.com/eWaterCycle/grpc4bmi for the Python server/client implementation.
 
 # Install
 
-System requirements:
-* Protobuf
-* [grpc](https://github.com/grpc/grpc/blob/master/BUILDING.md) >=v1.14.x
-
 From R
 
 ```R
-devtools::install_github("eWaterCycle/grpc4bmi-r")
+devtools::install_github("eWaterCycle/bmi-r")
 ```
 
 # Usage
@@ -20,31 +16,28 @@ First the model should be wrapped in a basic model interface be subclassing the 
 Then the server can be started with:
 
 ```
-export BMI_MODULE=<path to r script with bmi class>
-export BMI_CLASS=<bmi class name>
-export BMI_PORT=<port on which to run grpc server, default is 55555>
-Rscript -e 'grpc4bmi::run()'
+pip install grpc4bmi[R]
+run-bmi-server --lang R --name <path to r script with bmi class>.<bmi class name>
 ```
 
 ## Docker container
 
-To install grpc is a bit of a hassle so a Docker image is provided called [ewatercycle/grpc4bmi-r](https://hub.docker.com/r/ewatercycle/grpc4bmi-r/) which contains R and grpc installation.
-
-To create a Docker image of a R based hydrology model use this image as a start.
-
 So for example for https://github.com/ClaudiaBrauer/WALRUS
 
 ```Dockerfile
-FROM ewatercycle/grpc4bmi-r
+FROM r-base
 
-RUN installGithub.r ClaudiaBrauer/WALRUS
+RUN installGithub.r ClaudiaBrauer/WALRUS eWaterCycle/bmi-r
 
 RUN mkdir /opt/walrus-bmi
 
 COPY walrus-bmi.r /opt/walrus-bmi/walrus-bmi.r
 
-ENV BMI_MODULE=/opt/walrus-bmi/walrus-bmi.r
-ENV BMI_CLASS=WalrusBmi
+WORKDIR /opt/walrus-bmi
+
+RUN apt update && apt install -y python3-dev python3-pip && pip3 install grpc4bmi[R]
+CMD run-bmi-server --lang R --name walrus-bmi.WalrusBmi --path /opt/walrus-bmi --port 55555
+EXPOSE 55555
 ```
 
 To run server use
@@ -52,11 +45,6 @@ To run server use
 docker run -d -v $PWD:/data -p 55555:55555 <docker image from ewatercycle/grpc4bmi-r>
 ```
 The config file for the bmi initialize function should be put in current working directory and the initialize function should be called with `/data/<config filename`.
-
-To run server in debug mode use
-```bash
-docker run -d -v $PWD:/data -p 55555:55555 -e GRPC_TRACE=api -e GRPC_VERBOSITY=DEBUG <docker image from ewatercycle/grpc4bmi-r>
-```
 
 # Release
 
@@ -66,19 +54,10 @@ docker run -d -v $PWD:/data -p 55555:55555 -e GRPC_TRACE=api -e GRPC_VERBOSITY=D
 Rscript -e "devtools::document(roclets=c('rd', 'collate', 'namespace'))"
 ```
 
-## Generate cpp files from proto file
-
-```bash
-cd src
-protoc -I ../inst/proto --grpc_out=. --plugin=protoc-gen-grpc=`which grpc_cpp_plugin` ../inst/proto/bmi.proto
-protoc -I ../inst/proto --cpp_out=. ../inst/proto/bmi.proto
-cd -
-```
-
 ## Local build & install
 
 ```bash
-Rscript -e 'Rcpp::compileAttributes();devtools::document()'
+Rscript -e 'devtools::document()'
 R CMD INSTALL .
 Rscript -e 'grpc4bmi::run()'
 ```

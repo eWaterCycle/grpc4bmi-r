@@ -1,15 +1,13 @@
-Package: grpc4bmi
+Package: bmi
 Type: Package
-Title: gRPC server of basic model interface (bmi)
+Title: basic model interface
 Version: 1.0.0
 Date: 2018-07-31
 Author: S. Verhoeven
 Maintainer: S. Verhoeven <s.verhoeven@esciencecenter.nl>
-Description: Model as a service. Used in eWatercycle project to run hydrology models.
+Description: Used in eWatercycle project to run hydrology models via grpc4bmi
 License: file LICENSE
 Depends: R (>= 3.4.0), configr, R6
-Imports: Rcpp (>= 0.12.18)
-LinkingTo: Rcpp
 RoxygenNote: 6.1.0
 Suggests: 
     testthat

@@ -18,8 +18,6 @@ AbstractBmi <- R6Class(
     runModel = function() stop('Not implemented'),
 
     getComponentName = function() stop('Not implemented'),
-    getInputVarNameCount = function() stop('Not implemented'),
-    getOutputVarNameCount = function() stop('Not implemented'),
     getInputVarNames = function() stop('Not implemented'),
     getOutputVarNames = function() stop('Not implemented'),
 
@@ -36,11 +34,9 @@ AbstractBmi <- R6Class(
     getVarNBytes = function(name) stop('Not implemented'),
 
     getValue = function(name) stop('Not implemented'),
-    getValuePtr = function(name) stop('Not implemented'),
     getValueAtIndices = function(name, indices) stop('Not implemented'),
 
-    setValue = function(name, values, shape) stop('Not implemented'),
-    setValuePtr = function(name, ref) stop('Not implemented'),
+    setValue = function(name, values) stop('Not implemented'),
     setValueAtIndices = function(name, indices, values) stop('Not implemented'),
 
     getGridSize = function(grid_id) stop('Not implemented'),
@@ -52,9 +48,6 @@ AbstractBmi <- R6Class(
     getGridX = function(grid_id) stop('Not implemented'),
     getGridY = function(grid_id) stop('Not implemented'),
     getGridZ = function(grid_id) stop('Not implemented'),
-    getGridCellCount = function(grid_id) stop('Not implemented'),
-    getGridPointCount = function(grid_id) stop('Not implemented'),
-    getGridVertexCount = function(grid_id) stop('Not implemented'),
     getGridConnectivity = function(grid_id) stop('Not implemented'),
     getGridOffset = function(grid_id) stop('Not implemented')
   )
