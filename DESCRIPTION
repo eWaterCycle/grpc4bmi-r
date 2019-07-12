@@ -1,8 +1,8 @@
 Package: bmi
 Type: Package
 Title: basic model interface
-Version: 1.0.0
-Date: 2018-07-31
+Version: 1.1.0
+Date: 2019-07-12
 Author: S. Verhoeven
 Maintainer: S. Verhoeven <s.verhoeven@esciencecenter.nl>
 Description: Used in eWatercycle project to run hydrology models via grpc4bmi
