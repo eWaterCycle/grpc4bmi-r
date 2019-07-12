@@ -8,7 +8,7 @@ Maintainer: S. Verhoeven <s.verhoeven@esciencecenter.nl>
 Description: Used in eWatercycle project to run hydrology models via grpc4bmi
 License: file LICENSE
 Depends: R (>= 3.4.0), configr, R6
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
 Suggests: 
     testthat
 Roxygen: list(markdown = TRUE)

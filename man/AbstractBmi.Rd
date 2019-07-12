@@ -9,6 +9,6 @@
 AbstractBmi
 }
 \description{
-Documentation on each function can be found at https://github.com/csdms/bmi/tree/master/docs/source
+Documentation on each function can be found at https://bmi.readthedocs.io/
 }
 \keyword{datasets}

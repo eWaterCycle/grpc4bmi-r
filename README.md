@@ -10,17 +10,19 @@ From R
 devtools::install_github("eWaterCycle/bmi-r")
 ```
 
-For Python runner
+## Serve the model using grpc4bmi
+
+The [grpc4bmi](https://github.com/eWaterCycle/grpc4bmi) server can serve models written in R as a grpc service.
+The grpc service can be consumed by the Python grpc BmiClient.
+
+First the model should be wrapped in a basic model interface be subclassing the AbstractBmi class.
+
+Then install dependencies for running grpc4bmi server:
 
 ```bash
 pip install grpc4bmi[R]
 ```
 
-## Serve the model using grpc4bmi
-
-The [grpc4bmi](https://github.com/eWaterCycle/grpc4bmi) server/client implementation can also host models written in R.
-
-First the model should be wrapped in a basic model interface be subclassing the AbstractBmi class.
 Then the server can be started with:
 
 ```bash
