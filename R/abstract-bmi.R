@@ -2,7 +2,7 @@ library(R6)
 
 #' Abstract class defining the basic model interface
 #' 
-#' Documentation on each function can be found at https://github.com/csdms/bmi/tree/master/docs/source
+#' Documentation on each function can be found at https://bmi.readthedocs.io/
 #'
 #' @export
 #'
@@ -11,8 +11,6 @@ AbstractBmi <- R6Class(
     # R6 constructor is also called initialize so rename bmi initialize
     bmi_initialize = function(config_file) stop('Not implemented'),
     update = function() stop('Not implemented'),
-    updateUntil = function(until) stop('Not implemented'),
-    updateFrac = function(frac) stop('Not implemented'),
     # R6 destructor is also called finalize so rename bmi finalize
     bmi_finalize = function() stop('Not implemented'),
     runModel = function() stop('Not implemented'),
@@ -32,6 +30,7 @@ AbstractBmi <- R6Class(
     getVarItemSize = function(name) stop('Not implemented'),
     getVarUnits = function(name) stop('Not implemented'),
     getVarNBytes = function(name) stop('Not implemented'),
+    getVarLocation = function(name) stop('Not implemented'),
 
     getValue = function(name) stop('Not implemented'),
     getValueAtIndices = function(name, indices) stop('Not implemented'),
@@ -48,7 +47,11 @@ AbstractBmi <- R6Class(
     getGridX = function(grid_id) stop('Not implemented'),
     getGridY = function(grid_id) stop('Not implemented'),
     getGridZ = function(grid_id) stop('Not implemented'),
-    getGridConnectivity = function(grid_id) stop('Not implemented'),
-    getGridOffset = function(grid_id) stop('Not implemented')
+    getGridNodeCount = function(grid_id) stop('Not implemented'),
+    getGridEdgeCount = function(grid_id) stop('Not implemented'),
+    getGridFaceCount = function(grid_id) stop('Not implemented'),
+    getGridEdgeNodes = function(grid_id) stop('Not implemented'),
+    getGridFaceNodes = function(grid_id) stop('Not implemented'),
+    getGridNodesPerFace = function(grid_id) stop('Not implemented')
   )
 )
